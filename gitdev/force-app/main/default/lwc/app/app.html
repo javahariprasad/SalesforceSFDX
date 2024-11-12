@@ -1,0 +1,15 @@
+<template>
+    <lightning-card  title="" >
+    <div class="slds-p-around_x-small" if:true={isRender}>        
+        <c-multi-pick-list label="sample" showrequired="*" options={simpleMap}  showclearbutton='true' showfilterinput='true' showrefreshbutton='true' onitemselected={handleOnItemSelected}></c-multi-pick-list>
+    </div>
+    <!--div class="slds-p-around_x-small">
+        <button onclick={getSelectedItems}>ShowMyValues</button>
+    </div-->
+    <template lwc:if={yourSelectedValues}>
+        <div class="slds-p-around_x-small">{yourSelectedValues}</div>
+    </template>    
+    <div id="divRequired" data-name="diverror" class ="error" style="display:none;">Please enter required value</div>
+    <lightning-button label="Save" onclick={save} variant="brand" class="slds-float_center"></lightning-button>
+</lightning-card>
+</template>

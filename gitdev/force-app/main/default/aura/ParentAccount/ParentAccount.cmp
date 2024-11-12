@@ -1,0 +1,10 @@
+<aura:component implements="lightning:isUrlAddressable,lightning:actionOverride,force:hasRecordId,force:hasSObjectName" access="global">
+	<aura:handler name="init" value="{!this}" action="{!c.onPageReferenceChange}"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChange}"/>
+	<lightning:navigation aura:id="navService" />
+    <lightning:input aura:id="idInput" label="Id Input" />
+	<lightning:button label="Update Id" onclick="{!c.updateId}" />
+    
+      <c:editRedressLWC aura:id="lWCComponent2"></c:editRedressLWC>  
+ 
+</aura:component>

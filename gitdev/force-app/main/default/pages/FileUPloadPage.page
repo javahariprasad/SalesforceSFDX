@@ -1,0 +1,42 @@
+<apex:page controller="ContentController2">
+    
+<apex:form id="vform" target="-blank">
+    
+     <script>
+
+    var lexOrigin = "https://haritcs-dev-ed.lightning.force.com";
+    window.addEventListener("message", function(event) {
+        if (event.origin !== lexOrigin) {
+            // Not the expected origin: reject message!
+            return;
+        }
+        alert("something happen in parent window");
+        // Handle message
+        
+        //var v =document.getElementById('resume}').Value
+        
+        var v =document.getElementById('{!$Component.vform.resume}').Value;
+        
+        v = "{!file}";
+        
+        var message = {
+            name: "com.mycompany.chatmessage",
+            payload: v
+        };
+
+        parent.postMessage(message,"https://haritcs-dev-ed.lightning.force.com");
+        //var v= document.getElementById("vform");
+        // alert("something happen in parent window "+v.value);
+        
+    }, false);
+    
+    </script>
+    <!--apex:inputFile value="{!file}" /-->
+    <apex:inputFile id="resume" fileName="{!fileName}" contentType="{!contentType}" value="{!file}" size="45"/>
+    <apex:commandbutton id="upload" action="{!upload}" value="Upload"/>
+    
+  
+    
+    
+</apex:form>
+</apex:page>

@@ -1,0 +1,28 @@
+<aura:component access="global">
+    <aura:registerEvent name="appEvent" type="c:TravelModalEvent"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <!--Component Start--> 
+    <lightning:layoutItem>            
+            <div class="slds-text-align_center slds-text-heading-xx_small slds-border_bottom">
+                <aura:unescapedHtml value="Are you sure you want to delete this trip?"/>
+            </div>
+          <div class="slds-top_bottom slds-border_center">
+            <lightning:layoutItem>
+                <div class="slds-p-top_medium" />                
+                                                
+                <div class="slds-align_absolute-center slds-grid slds-gutters ">
+                    
+                        <div class="slds-text-align_right slds-col slds-float_right slds-border_right" >
+                            <lightning:button class="slds-button slds-button_neutral" label="Cancel" onclick = "{!c.handleCancel}" />                            
+                        </div>
+                        <div class="slds-col">
+                          <lightning:button class=" slds-button slds-button_text-destructive slds-button slds-button_neutral" label="Delete" onclick = "{!c.handleOK}" /> 
+                        </div>
+                 
+                </div> 
+            </lightning:layoutItem>   
+        </div>
+        </lightning:layoutItem>
+
+    <!--Component End-->
+</aura:component>

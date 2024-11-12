@@ -1,0 +1,90 @@
+<!--
+  @Component Name     : Case_DocumentExchangev2.cmp
+  @Description        : Component is used to upload multiple files for creating child and parent cases.  
+  @Author             : Sandeep  
+  @Modification Log   : 
+  ==============================================================================
+  Ver         Date                     Author      		      Modification
+  ==============================================================================
+  1.0    6/18/2019, 6:29:04 PM   Sandeep     Initial Version
+  1.0    6/20/2019, 6:29:04 PM   Hari Prasad     Added Spinner and Async functionality
+  2.0    08/08/2019              Hari Prasad     Added/created custom component for captcha to resuse multiple applications.
+-->
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="maxFiles" type="Integer" default="5"/>
+    <aura:attribute name="defaultFiles" type="Integer" default="1"/>
+    <aura:attribute name="maxFileSize" type="Integer" default="3"/>
+    <aura:attribute name="accept" type="String" default=".pdf, .jpg, .png, .doc"/>
+    
+    <aura:attribute name="files" type="List" default="[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="conversion" type="ContentVersion" default="{'sobjectType': 'ContentVersion'}" access="global"/>
+    <aura:attribute name="newCase" type="Case" default="{'sobjectType': 'Case'}" access="global" />
+    <aura:attribute name="docCategoryOptions" type="Object" />
+    <aura:attribute name="mastDocTypeOptions" type="Object" />
+    <aura:attribute name="parentCaseId" type="String" />
+    <aura:attribute name="bfiles" type="List" default="[]"/>
+    <aura:attribute name="listConversion" type="List" access="global"/> 
+    <aura:attribute name="bCaptcha" type="String" default="true"/>
+    <aura:attribute name="label" type="string" default=""/>
+    <aura:attribute name="showSubmit" type="boolean" default="true"/>
+
+    <lightning:layout>
+        <lightning:layoutItem size="2"></lightning:layoutItem>
+        <lightning:layoutItem size="8">
+            <lightning:layout multipleRows="True">
+                <!--
+                <lightning:layoutItem size="12" class="slds-p-around_small">
+                    <div class="slds-text-heading_large slds-m-top_medium">
+                        <aura:unescapedHtml value="Header1"/>
+                    </div>
+                    <div class="slds-text-heading-xx_small slds-m-top_medium">
+                       <aura:unescapedHtml value="Multiple Files"/>
+                    </div>
+                    <div class="slds-text-heading-xx_small slds-m-top_medium">
+                       <aura:unescapedHtml value="Header"/>
+                    </div>
+                </lightning:layoutItem>
+               
+                <lightning:layoutItem class="slds-p-around_small" size="6">
+                    <lightning:input aura:id="fName" label="First Name" required="true" messageWhenValueMissing="Please enter your first name" value=""/>
+                </lightning:layoutItem>
+                <lightning:layoutItem class="slds-p-around_small" size="6">
+                    <lightning:input aura:id="lName" label="Last Name" required="true" messageWhenValueMissing="Please enter your last name" value="" />
+                </lightning:layoutItem>
+                <lightning:layoutItem class="slds-p-around_small" size="6">
+                    <lightning:input aura:id="email" label="Email" value="" required="true" messageWhenValueMissing="Please enter your email address"/>
+                </lightning:layoutItem>
+				 -->
+            </lightning:layout>
+          	 <lightning:layoutItem class="slds-p-around_small" size="12">
+                <c:SecureDocumentFileUpload aura:id="upload"/>
+             </lightning:layoutItem>
+             
+              <lightning:layout multipleRows="True">
+             
+                <lightning:layoutItem class="slds-p-around_small" size="12">
+                    <div><!--
+                        <div class="slds-float_left">
+                        	<lightning:input type="checkbox" checked="true" aura:id="ack" name="Acknowledgement"/>
+                        </div>
+-->
+                        <div class="slds-float_left slds-size--11-of-12">
+                        	<!--<aura:unescapedHtml value="Acknowledgement"/>-->
+                        </div>
+                   
+                        <div class="slds-clearfix"></div>
+                    </div>
+                </lightning:layoutItem>
+               <!--
+                <lightning:layoutItem class="slds-p-around_large" size="12">
+                <aura:if isTrue="{!v.showSubmit}">
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.save}"  aura:id="savebtn"/>
+                   </aura:if>
+                </lightning:layoutItem>
+                  -->
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-size--2-of-12"></lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

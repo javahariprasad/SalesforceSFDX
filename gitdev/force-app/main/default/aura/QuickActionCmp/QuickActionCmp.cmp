@@ -1,0 +1,45 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">    
+    <aura:attribute name="accountRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+        <lightning:overlayLibrary aura:id="overlayLib"/>
+    <aura:attribute name="ContentObj" type="ContentVersion"/>
+     <aura:attribute name="ss" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:html tag="style">.toastMessage.forceActionsText{
+	white-space : pre-line !important;
+}</aura:html>
+
+    
+    <force:recordData aura:id="recordLoader"
+    recordId="{!v.recordId}"
+    fields="Name,Description"
+    targetFields="{!v.accountRecord}"
+    targetError="{!v.recordLoadError}"
+    />
+    <aura:html tag="style">
+        .slds-modal__container{
+        height: 50% !important;
+        max-height: 50% !important;
+        }
+        
+        .slds-modal__header h2{
+        font-weight: 500 !important;
+        font-size: 1.7rem;
+        }
+    </aura:html>
+    <aura:attribute name="acceptMessage" type="String" default="12" />
+    
+    <lightning:layoutItem class="slds-p-left_small" size="12">
+        <aura:if isTrue="{!v.acceptMessage!=''}">          
+                <div>
+                    <aura:unescapedHtml value="{!v.acceptMessage}" />
+                </div>            
+        </aura:if>
+        <lightning:textarea name="input4" value="{!v.ss}" label="Read-only textarea field" />  
+         <lightning:buttonIcon name="delete" class="slds-m-left_medium" iconName="utility:delete"
+                    onclick="{!c.removeAttachment}" />
+    </lightning:layoutItem>
+</aura:component>

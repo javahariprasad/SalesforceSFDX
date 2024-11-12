@@ -1,0 +1,229 @@
+<apex:page Controller="attachPDFToOpp" renderAs="pdf" applyHtmlTag="false"  contentType="application/pdf" 
+           sidebar="false" showHeader="false" cache="true" >
+    <html>
+        
+    <head>   
+          <style type="text/css">
+            
+              @page {
+              size: letter;
+              margin: 10mm;
+              @top-center {
+              content: "";
+              }
+              @bottom-right {
+              content: "Page " counter(page);
+              font-size: 12px;
+              }
+              @bottom-left {
+              content: element(footer);
+              }
+              }
+              .page-break {
+              display:block;
+              page-break-after:always;
+              }
+              div.footer {                    
+              position: running(footer);
+              width: 100%;
+              }
+              
+              .border1 {
+              border: 1px solid black;
+              }
+              
+              .th {
+              height: 70px;
+              }
+              tr.border_bottom td {
+              border-bottom: 2px solid black;
+              }
+              .border_td {
+              border-left: 2px solid black;
+              border-bottom: 1px solid black;
+              }
+              .sfont12b {
+              font-size: 12px;
+              font-weight: bold;            
+              } 
+              .sfont14 {
+              font-size: 14px;             
+              } 
+              .sfont14b {
+              font-size: 14px;
+              font-weight: bold;            
+              } 
+              .sfont16 {
+              font-size: 16px;            
+              }
+              .sfont16b {
+              font-size: 16px; 
+              font-weight: bold;            
+              }
+              .sfont20b {
+              font-size: 20px; 
+              font-weight: bold;            
+              }
+              .sfont10 {
+              font-size: 10px;             
+              }
+              .dborder {
+              border-top: 4px;
+              border-style: solid;
+              border-color: #bbbbbb;   /* grey */             
+              }
+              .tborder {
+              border-top: 0.1px;
+              border-style: solid;
+              border-color: black;          
+              } 
+              #footers {
+              clear: both;
+              width: auto;
+              }
+              .brxsmall { 
+              display: block; 
+              margin-bottom: -.2em; 
+        } 
+          
+         
+            
+        </style> 
+        
+    </head> 
+     <!--div style="page-break-before:always">&nbsp;</div --> 
+   <body>      
+       <div style="position: relative">
+           <div class="footer" >
+               <span style="font-size: 12px;"><apex:outputText value="{0, date,  MM/DD/YY}"> <apex:param value="{!NOW()}" /></apex:outputText></span>
+         </div>
+           <div style="text-align:right;"><span style="font-size: 16px;color:red;"><b> SALES QUOTATION</b></span> </div> 
+           <div class="dborder"></div>
+           <div style="padding-top: 5px; width: 40%; float:left">
+               <div><span style="font-size: 16px;color:red;"><b>Send all purchase orders to:</b></span> </div>
+               <div>
+                   <table style="width:100%">
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>First Name:</b></span>&nbsp;&nbsp; hari prasad</td></tr>
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>Email:</b></span>&nbsp;&nbsp;{!email}</td></tr> 
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>Phone:</b></span>&nbsp;&nbsp;1234567890</td></tr>
+                   </table>
+               </div>
+               
+               <div style="padding-top: 10px;">
+                   <table style="width:100%">
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>{!caddr.street}:</b>&nbsp;&nbsp;</span></td></tr>
+                       <tr> <td style=" text-align:left;"><span class ="sfont14">{!caddr.city} &nbsp; {!caddr.state} {!caddr.pc}&nbsp;</span></td></tr>                  
+                   </table>
+               </div>
+               <div style="padding-top: 15px;"><span style="font-size: 16px;color:red;"><b>Quotation prepared for:</b></span> </div>
+               <div style="padding-top: 0px;"><span style="font-size: 12px;"><b>Customer name:</b></span><br/><span class="sfont10">Customer@email.com</span></div>
+               <div style="padding-top: 1px;"><span style="font-size: 12px;"><b>Company Name:</b></span></div> 
+               <div style="padding-top: 1px;">
+                   <table style="width:100%">
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>{!caddr.street}:</b>&nbsp;&nbsp;</span></td></tr>
+                       <tr><td style=" text-align:left;"><span class ="sfont10">{!caddr.city} &nbsp; {!caddr.state} {!caddr.pc}&nbsp;;</span></td></tr>                  
+                   </table>
+               </div>
+               
+           </div> <!-- LEFT -->
+           
+           
+           <div style="padding-top: 0px; width: 60%; float:right">
+               <div style="padding-top: 10px;"> </div>
+               <div style="padding-top: 10px; padding-bottom: 5px; background-color:#D3D3D3">
+                   <div style="padding-left: 4px;">
+                       <div style="padding-top: 10px;width: 40%; float:left"><span class ="sfont14b">Quotation No:</span></div>
+                       <div style="padding-top: 10px;width: 60%; float:right"><span class ="sfont14">123456</span></div>
+                       <div style="padding-top: 10px;width: 40%; float:left"><span class ="sfont14b">Date:</span></div>
+                       <div style="padding-top: 10px;width: 60%; float:right"><span class ="sfont14">01/07/2019</span></div>
+                       <div style="padding-top: 10px;width: 40%; float:left"><span class ="sfont14b">Expiration Date:</span></div>
+                       <div style="padding-top: 10px;width: 60%; float:right"><span class ="sfont14">80% upon delivery ‐ net 60 days, 20% upon acceptance ‐ net 60 days</span> </div>
+                   </div>
+                   <div id="footers"> </div>
+               </div>
+             
+				<div style="padding-top: 5px;"> </div>
+               
+               <div style="padding-top: 10px; padding-bottom: 5px; background-color:#D3D3D3">
+                   <div style="padding-left: 4px;">
+                       <div style="padding-top: 10px;width: 40%; float:left"><span class ="sfont14b">FCA:</span></div>
+                       <div style="padding-top: 10px;width: 60%; float:right"><span class ="sfont14">123456</span></div>
+                       <div style="padding-top: 10px;width: 40%; float:left"><span class ="sfont14b">Delivery:</span></div>
+                       <div style="padding-top: 10px;width: 60%; float:right"><span class ="sfont14">01/07/2019</span></div>
+                       <div style="padding-top: 10px;width: 40%; float:left"><span class ="sfont14b">Payment Terms:</span></div>
+                       <div style="padding-top: 10px;width: 60%; float:right"><span class ="sfont14">80% upon delivery ‐ net 60 days, 20% upon acceptance ‐ net 60 days</span> </div>
+                   </div>
+                   <div id="footers"> </div>
+               </div>
+             
+               <div style="padding-top: 10px;"><span style="font-size: 14px;"><b>For questions concerning this sales quotation, please contact:</b></span></div>
+               <div style="padding-top: 1px;">
+                   <table style="width:100%">
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>First Name:</b></span>&nbsp;&nbsp;hari prasad</td></tr>
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>E-mail:</b></span>&nbsp;&nbsp;{!email}</td></tr> 
+                       <tr><td style="text-align:left;"><span class ="sfont14"><b>Phone:</b></span>&nbsp;&nbsp;1234567890</td></tr>
+                   </table>
+               </div>
+           </div>
+           
+           <div id="footers"/>            
+               <div style="padding-top: 10px;padding-bottom: 10px">
+                   <table width="100%" style="border-collapse: collapse;">                   
+                       <tr class ="border_bottom"> 
+                           <td><span class ="sfont14b">Item no.</span></td>
+                           <td><span class ="sfont14b">Part No.</span></td>
+                           <td><span class ="sfont14b">Description</span></td>
+                           <td><span class ="sfont14b">Quantity</span></td>
+                           <td><span class ="sfont14b">Unit price</span></td>
+                           <td style="text-align:right;"><span class ="sfont14b">Total</span></td>
+                       </tr>
+                       <tbody>
+                           <apex:repeat value="{!listolw}" var="item">
+                               <tr>
+                                   <td><div>{!item.itemNo}</div> </td>
+                                   <td><div><span class ="sfont14b">{!item.partNo}</span></div> </td>
+                                   <td style="width:40%;"><div><span class ="sfont14b">{!item.descrition}</span></div> </td>
+                                   <td><div><span class ="sfont14"><apex:outputText value="{!ROUND(item.quantity,0)}" /></span></div></td>
+                                   <td><div ><span class ="sfont14">{!item.unitprice}</span></div></td>
+                                   <td style="text-align:right;"><div><span class ="sfont14b">{!item.totalPrice}</span></div></td>
+                               </tr>
+                           </apex:repeat>                       
+                       </tbody>
+                   </table>
+               </div>
+               <div class="tborder"/>     
+               <div style="padding-top: 10px;">
+                   <table style="width:100%">
+                       <tr><td style="text-align:right;"><span class ="sfont20b">Total</span></td>
+                           <td style="text-align:right;"><span class ="sfont20b">{!totalprice}</span></td></tr>
+                   </table>
+               </div>
+               <div style="page-break-before:always">&nbsp;</div> 
+               <div> 
+                   <p class ="sfont10">This quotation and any resultant sale are subject to the accompanying terms and conditions, which are incorporated herein by reference.</p>
+                   <p class ="sfont10">Manufacturer's one year limited warranty to repair defects in materials and workmanship commences upon Customer's acceptance.  Customer's acceptance shall be deemed to occur on the earlier of
+                       the date installation is completed or Customer first usesthe product.  If, due to no fault or delay by HTA, installation is not completed or Customer does not use the product within sixty (60) days after
+                       delivery, Customer's acceptance shall be deemed to occur on the end of such period. </p>
+                   <p class ="sfont10">Remit Payment To:</p>
+                   <p><span class="sfont10 brxsmall">Hitachi High‐Tech America, Inc.</span>
+                       <span class="sfont10 brxsmall">PO Box 70481</span><span class="sfont10 brxsmall">Chicago, IL 60673‐0481 </span></p>
+               </div>
+               <div style="text-align:center;"><span class="sfont12b">Proposal Not Valid Unless Signed By Authorized Company Officer.</span> </div>            
+          
+           <div> 
+               <div style="padding-top: 20px;width: 45%; float:right">
+                   <div style="padding-bottom:40px;"> <p class ="sfont10">Authorized Signature.</p></div>
+                   <div class="tborder"/> 
+                   <div> 
+                       <p><span class ="sfont12b brxsmall">{!strManager}</span>
+                           <span class="sfont10">{!strManagerhelp}</span></p>            
+                   </div>
+               </div>
+           </div>
+           <div id="footers"/> 
+           
+           
+       </div>
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,200 @@
+<template>
+  <div class="spinner">
+    <template if:true={isLoading}>
+         <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+         </lightning-spinner>
+    </template>
+</div>
+    <lightning-card  title="" >
+    <div class="slds-grid slds-wrap slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+          <label class="slds-form-element__label" for="redressName">Redress Name</label
+          >
+          <div class="slds-form-element__control">
+            <label class="slds-form-element__label" for="redressName">{rName}</label>
+          </div>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+          <div if:false={screenType}>
+            <label class="slds-form-element__label" for="CaseNumber">Case Number</label>
+            <lightning-record-edit-form object-api-name="AccountBrand" id="createContactForm" >
+              <lightning-input-field field-name="AccountId" value={caseid}  variant="label-hidden" onchange={handleChange} required> </lightning-input-field>
+            </lightning-record-edit-form>
+        </div>
+       <div if:true={screenType}>
+          <label class="slds-form-element__label" for="CaseNumber">Case Number</label>
+          <div class="slds-form-element__control">
+            <a onclick={handleNavigate}>{rCaseName}</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="slds-grid slds-wrap slds-gutters">
+          <div class="slds-col slds-size_1-of-2">
+            <label class="slds-form-element__label" for="RedressType">Type of Redress Required</label>
+            <div class="slds-form-element__control">
+                <lightning-combobox placeholder="" variant="label-hidden" value={rType} options={redressTypeyOptions} id="RedressType" name="Type_of_Redress_Required__c" 
+                onchange={handleChange}></lightning-combobox>
+              <!--lightning-input type="text" id="RedressType" variant="label-hidden" name="RedressType" value={rType}></lightning-input-->
+            </div>
+          </div>
+          <div class="slds-col slds-size_1-of-2">
+            <label class="slds-form-element__label" for="RedressDate">Redress Date</label>
+            <div class="slds-form-element__control">
+              <lightning-input type="date" id="RedressDate" variant="label-hidden" name="Redress_Date__c" value={rDate} onchange={handleChange}></lightning-input>
+            </div>
+          </div>
+        </div>
+        <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceRef">Redress Face & Fee Reference Number</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="text"  pattern="[0-9]{10}:[0-9]{8}" data-id="FaceRef" variant="label-hidden" name="Redress_Face_Fee_Reference_Number__c" value={rFaceRef} onblur={onReferenceNumberChnage} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodRef">Redress Goodwill & Interest Ref Number</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="text" pattern="[0-9]{10}:[0-9]{8}" data-id="GoodRef" variant="label-hidden" name="Redress_Goodwill_Interest_Ref_Number__c" value={rGoodRef} onblur={onReferenceNumberChnage} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceAmt">Redress Face Amount in USD</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="FaceAmt" variant="label-hidden" name="Redress_Face_Amount_in_USD__c" value={rFaceAmtUSD} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodAmt">Redress Goodwill Amount in USD</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="GoodAmt" variant="label-hidden" name="Redress_Goodwill_Amount_in_USD__c" value={rGoodAmtUSDVal} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FeeAmt">Redress Fee Amount in USD</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="FeeAmt" variant="label-hidden" name="Redress_Fee_Amount_in_USD__c" value={rFeeAmtUSD} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="IntAmt">Redress Interest Amount in USD</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="IntAmt" variant="label-hidden" name="Redress_Interest_Amount_in_USD__c" value={rIntAmtUSDVal} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceFeeAmt">Redress Face & Fee Total Amount in USD</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="FaceFeeAmt" variant="label-hidden" name="NFRedress_Face_Fee_Total_Amount_in_USD__c" value={rFaceFeeAmtUSD} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodIntAmt">Redress Goodwill & Interest Total in USD</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="GoodIntAmt" variant="label-hidden" name="NFRedress_Goodwill_Interest_Total_in_USD__c" value={rGoodIntAmtUSD} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceAmtLC">Redress Face Amount in Local Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="FaceAmtLC" variant="label-hidden" name="Redress_Face_Amount_in_Local_Currency__c" value={rFaceAmtLCUSD} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodAmtLC">Redress Goodwill Amt in Local Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="GoodAmtLC" variant="label-hidden" name="Redress_Goodwill_Amt_in_Local_Currency__c" value={rGoodAmtLCUSDVal} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FeeAmtLC">Redress Fee Amount in Local Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="FeeAmtLC" variant="label-hidden" name="Redress_Fee_Amount_in_Local_Currency__c" value={rFeeAmtLCUSD} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="IntAmtLC">Redress Interest Amt in Local Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="IntAmtLC" variant="label-hidden" name="Redress_Interest_Amt_in_Local_Currency__c" value={rIntAmtLCUSDVal} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceFeAmtLC">Redress Face & Fee Amt in Local Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="FaceFeAmtLC" variant="label-hidden" name="Redress_Face_Fee_Amt_in_Local_Currency__c" value={FaceFeAmtLCVal}  onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodIntAmtLC">Redress Gdwill & Int Amt in Loc Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-input type="number" formatter="currency" id="GoodIntAmtLC" variant="label-hidden" name="Redress_Gdwill_Int_Amt_in_Loc_Currency__c" value={rGoodIntAmtLCUSDVal} onchange={handleChange}></lightning-input>
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceFeRecCur">Redress Face & Fee Receive Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-combobox variant="label-hidden" value={rFaceFeRecCurVal} options={currencyOptions} data-id="FaceFeRecCur" name="Redress_Face_Fee_Receive_Currency__c" 
+                onchange={handleChange}></lightning-combobox>
+                <!--lightning-input type="number" formatter="currency" id="FaceFeRecCur" variant="label-hidden" name="Redress_Face_Fee_Receive_Currency__c" value={rFaceFeRecCur} onchange={handleChange}></lightning-input-->
+              </div>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodIntRecCur">Redress Goodwill & Int Receive Currency</label>
+              <div class="slds-form-element__control">
+                <lightning-combobox variant="label-hidden" value={rGoodIntRecCurVal} options={currencyOptions} data-id="GoodIntRecCur" name="Redress_Goodwill_Int_Receive_Currency__c" onchange={handleChange}></lightning-combobox>
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceFeePOENum">Red Face & Fee POE Num - Read Only</label>
+              <div class="slds-form-element__control">
+                <label class="slds-form-element__label" for="FaceFeePOENum">{rFaceFeePOENum}</label>
+              </div> 
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodIntPOENum">Red Gwill & Int POE Num - Read Only</label>
+              <div class="slds-form-element__control">
+                <label class="slds-form-element__label" for="GoodIntPOENum">{rGoodIntPOENum}</label>
+              </div> 
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="FaceFeeREFNum">Red Face & Fee REF Num - Read Only</label>
+              <div class="slds-form-element__control">
+                <label class="slds-form-element__label" for="FaceFeeREFNum">{rFaceFeeREFNum}</label>
+              </div> 
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <label class="slds-form-element__label" for="GoodIntREFNum">Red Gwill & Int REF Num - Read Only</label>
+              <div class="slds-form-element__control">
+                <label class="slds-form-element__label" for="GoodIntREFNum">{rGoodIntREFNum}</label>
+              </div> 
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap slds-gutters">
+          <div class="slds-form-element slds-align--absolute-center slds-m-top--medium">
+          <lightning-button label="Save" onclick={save} variant="brand" class="slds-float_center"></lightning-button>
+          <lightning-button label="Cancel" onclick={cancelAction} variant="brand" class="slds-float_center slds-m-left--large"></lightning-button>       
+        </div>
+      </div>
+    </lightning-card>
+</template>

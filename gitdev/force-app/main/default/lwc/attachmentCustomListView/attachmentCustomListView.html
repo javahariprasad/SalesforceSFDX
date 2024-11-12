@@ -1,0 +1,58 @@
+<template>
+    <lightning-card title="Case Attachment(s) List View">
+        <div slot="actions">          
+            <lightning-button class="slds-m-around_medium" label="Upload"  onclick={navigateToNewRecordPage}></lightning-button>
+            <lightning-button class="" label="Delete" onclick={deleteSelectedJobHistories}></lightning-button>
+            <lightning-button class="slds-m-around_medium" label="Download" onclick={downloadSelectedJobHistories}></lightning-button>
+            </div>
+            <div class="slds-card__body_inner"> 
+                <p>Selected JobHistories: {selectedJHLen} </p> 
+            </div> 
+            <!--div class="slds-grid slds-gutters slds-p-bottom_x-small slds-p-left_xx-small">
+                <lightning-input type="search" onchange={handleSearch}> </lightning-input>
+
+            </div-->
+            <div class="c-container">
+            <lightning-datatable class="datatable-full-size"
+             key-field="id"
+             data={jobHistoriesData}
+             columns={cols}
+             onrowselection = {handleRowSelection}
+             onrowaction = {handleRowAction}            
+             > </lightning-datatable>
+            </div>           
+    </lightning-card>
+    <template if:true={openModal}>  
+        <div class="slds-modal slds-fade-in-open slds-backdrop">  
+          <div class="slds-modal__container">  
+            <!------HEADER Section-->  
+            <div class="slds-modal__header">  
+              <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+                variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+              </lightning-button-icon>  
+              <h2>Case Attachment</h2>  
+            </div>  
+            <!------Body Section-->  
+            <div class="slds-modal__content slds-p-around_medium">  
+              <center>  
+                        <lightning-file-upload
+                label="Attach File"
+                name="fileUploader"
+                accept={acceptedFormats}
+                record-id={recordId}
+                onuploadfinished={handleUploadFinished}
+                multiple
+            >
+            </lightning-file-upload>
+              </center>  
+            </div>  
+            <!------Footer Section-->  
+            <div class="slds-modal__footer">  
+              <lightning-button icon-name="utility:close" label="close" variant="brand" onclick={closeModal}>  
+              </lightning-button>  
+            </div>  
+          </div>  
+        </div>  
+      </template> 
+    
+</template>

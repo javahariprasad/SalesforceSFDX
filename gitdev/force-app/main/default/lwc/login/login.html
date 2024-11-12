@@ -1,0 +1,31 @@
+<template>
+        <div class="c-container slds-m-top_xx-large slds-m-left_xx-large center">
+            <lightning-layout horizontal-align="center" multiple-rows class="slds-m-around_xx-large"> 
+                <lightning-layout-item size="12" >
+                            <div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_xx-large slds-form-element__control slds-input-has-icon slds-input-has-icon_left">                                
+                                <lightning-icon class="input-icon blue-icon" icon-name="utility:user" alternative-text="email" size="xx-small"></lightning-icon>
+                                <input type="text" data-id="inputEmail" placeholder="Email" class="slds-box slds-input input-element" onfocusout={handleUserNameChange} required />
+                                <span class="error">{emailErrormsg}</span>
+                            </div>
+                 </lightning-layout-item>
+                            <lightning-layout-item size="12" >                
+                            <div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_x-small slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                                <lightning-icon class="input-icon blue-icon" icon-name="utility:lock" alternative-text="username" size="xx-small"></lightning-icon>
+                                <input type="password" data-id="inputPassword" placeholder="Password" class="slds-box slds-input input-element" onfocusout={handlePasswordChange} required/>
+                                <span class="error">{pwdErrormsg}</span>
+                            </div> 
+                 </lightning-layout-item>
+                            <lightning-layout-item size="12" >                   
+                            <div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_x-small">
+                                <button type="submit" class="login-button slds-button" onclick={handleLogin}>Log In</button>
+                            </div>
+                  </lightning-layout-item>
+                            <lightning-layout-item size="12" >
+                            <div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_x-small">
+                                <a href="https://haritcs-developer-edition.na85.force.com/s/loginh" class="slds-text-body_regular">Forgot your password</a>                        
+                            </div>
+                    </lightning-layout-item>  
+                         
+            </lightning-layout>
+        </div>
+    </template>

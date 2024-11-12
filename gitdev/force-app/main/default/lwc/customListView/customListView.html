@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Cutom Job History List View">
+        <div slot="actions">          
+            <lightning-button class="slds-m-around_medium" label="New"  onclick={navigateToNewRecordPage}></lightning-button>
+            <lightning-button label="Delete" onclick={deleteSelectedJobHistories}></lightning-button>
+            </div>
+            <div class="slds-card__body_inner"> 
+                <p>Selected JobHistories: {selectedJHLen} </p> 
+            </div> 
+            <!--div class="slds-grid slds-gutters slds-p-bottom_x-small slds-p-left_xx-small">
+                <lightning-input type="search" onchange={handleSearch}> </lightning-input>
+
+            </div-->
+            <div class="c-container">
+            <lightning-datatable class="datatable-full-size"
+             key-field="id"
+             data={jobHistoriesData}
+             columns={cols}
+             onrowselection = {handleRowSelection}
+             onrowaction = {handleRowAction}            
+             > </lightning-datatable>
+            </div>
+
+           
+    </lightning-card>
+
+    
+</template>

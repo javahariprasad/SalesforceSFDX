@@ -1,0 +1,47 @@
+<template>
+    <div class="c-container"> 
+        <lightning-layout horizontal-align="spread" multiple-rows class="slds-m-around_xx-large"> 
+            <lightning-layout-item size="6" >
+                       <div class="slds-is-relative slds-col slds-p-right_xx-large slds-p-left_xx-large slds-form-element__control slds-input-has-icon slds-input-has-icon_left topmidc">
+                        <lightning-icon class="input-icon blue-icon" icon-name="utility:user" alternative-text="email" size="xx-small"></lightning-icon>
+                        <lightning-input type="email" data-id="inputEmail" placeholder="Email" pattern="[A-Za-z0-9._-]+@[a-z0-9-]+.[a-z]{2,}$" message-when-pattern-mismatch="Please enter a valid email"></lightning-input>
+                       
+                       </div> 
+                        
+                    <!--div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_x-small slds-form-element__control slds-input-has-icon slds-input-has-icon_left topmidc">                                
+                            <lightning-icon class="input-icon blue-icon" icon-name="utility:user" alternative-text="email" size="xx-small"></lightning-icon>
+                            <lightning-input type="text" data-id="inputEmail" placeholder="Email" class="slds-box slds-input input-element" pattern="[A-Za-z0-9._-]+@[a-z0-9-]+.[a-z]{2,}$" onchange={handleUserNameChange} required />
+                       
+                        </div-->
+                           
+                        <div class="slds-is-relative slds-col slds-p-right_xx-large slds-p-left_xx-large slds-form-element__control slds-input-has-icon slds-input-has-icon_left midc">
+                            <lightning-icon class="input-icon blue-icon" icon-name="utility:lock" alternative-text="username" size="xx-small"></lightning-icon>
+                            <lightning-input type="password" data-id="inputEmail" placeholder="Password" class="slds-border_bottom"></lightning-input>                       
+                            <!--input type="password" data-id="inputPassword" placeholder="Password" class="slds-box slds-input input-element" onchange={handlePasswordChange} required/-->
+                        </div> 
+                             
+                        <div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_x-small midc">
+                            <button type="submit" class="login-button slds-button" onclick={handleLogin}>Log In</button>
+                        </div>
+             
+                        <div class="slds-col slds-p-right_xx-large slds-p-left_xx-large slds-p-top_x-small midc">
+                            <a href="" class="slds-text-body_regular">Forgot your password</a>                        
+                        </div>
+                </lightning-layout-item>  
+                <lightning-layout-item size="6" >
+                    <div class="center">
+
+                        <p>Welcome to Safe At Work.</p>
+                      
+                      </div>
+                      <div class="center">
+
+                        <p>Please enter the email address and password you use to log in to your Copany's Talent Community.</p>
+                      
+                      </div>
+                </lightning-layout-item> 
+             
+                     
+        </lightning-layout>
+    </div>
+</template>

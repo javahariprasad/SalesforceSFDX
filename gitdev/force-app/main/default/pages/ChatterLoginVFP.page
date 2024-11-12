@@ -1,0 +1,26 @@
+<apex:page controller="ChatterPostController" showHeader="false">
+
+  <apex:form >
+      <apex:image id="theImage" value="{!$Resource.usericon}" width="200" height="200" alt="Description of image here"/>
+    <apex:pageBlock >
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Post" action="{!doPost}"/>
+
+      </apex:pageBlockButtons>
+
+      <apex:pageBlockSection columns="1">
+         <apex:outputLabel value="Type Main Contact & Path to Win for " />
+         <apex:inputTextArea value="{!detail}" cols="60" rows="20" style="width: 475px !important;" />
+      </apex:pageBlockSection>
+   </apex:pageBlock>
+</apex:form>
+
+  <!-- redirect to the group page -->
+  <apex:outputPanel rendered="{!posted}">
+      dfddd
+   <script>
+      window.top.location='{!redurl}';
+   </script>
+ </apex:outputPanel>
+
+</apex:page>

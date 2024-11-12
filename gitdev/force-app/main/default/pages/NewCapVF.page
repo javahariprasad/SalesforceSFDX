@@ -1,0 +1,34 @@
+<apex:page controller="NewCapController">
+     
+    <!-- Styling to eliminate border on the iFramed content -->
+    <style type="text/css">
+        .bPageBlock.brandSecondaryBrd.apexDefaultPageBlock.secondaryPalette {
+            border: none; 
+        }
+    </style>
+     
+    <apex:pageBlock >
+        <apex:form >
+            <!-- recaptcha placeholder element -->
+            <div id='recaptcha'/>
+                
+            <script type="text/javascript">
+                var captchaSuccess = function() { 
+                    var origin = location.origin;
+                    parent.postMessage('success', origin);
+                };
+                 
+                var repatchaReady = function() {
+                    grecaptcha.render('recaptcha', {
+                        'sitekey' : '6LeAQJ8UAAAAALRb4veFmfIwmonYsMBYwQPwlvs'
+                        , 'callback': captchaSuccess
+                    });
+                };
+            </script>    
+             
+            <!-- The Google reCaptcha API loads first with a callback -->
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async="" defer=""/>
+ 
+    </apex:form>
+  </apex:pageBlock>
+</apex:page>

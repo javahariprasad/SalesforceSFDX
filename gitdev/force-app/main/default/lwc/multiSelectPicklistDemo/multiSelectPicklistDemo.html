@@ -1,0 +1,12 @@
+<template>
+    <lightning-card variant="Narrow" title="Mulit Select ComboBox" icon-name="custom:custom43">
+        <div class="slds-p-horizontal_small">
+            <c-multi-select-picklist-lwc 
+                if:true={picklistValues} 
+                options={picklistValues}
+                onvaluechange={handleValueChange} 
+                label="Industry">
+            </c-multi-select-picklist-lwc>
+        </div>
+    </lightning-card>
+</template>

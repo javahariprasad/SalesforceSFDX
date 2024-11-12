@@ -1,0 +1,104 @@
+<aura:component controller="FileUploadController"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes"
+    >
+<!--<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+-->
+
+    <aura:attribute name="maxFiles" type="Integer" default="5" />
+    <aura:attribute name="defaultFiles" type="Integer" default="1" />
+    <aura:attribute name="maxFileSize" type="Integer" default="3" />
+    <aura:attribute name="accept" type="String" default=".pdf, .jpg, .png, .doc, .txt" />
+    <aura:attribute name="files" type="List" default="[]" />
+    <aura:attribute name="docCategoryOptions" type="Object" />
+    <aura:attribute name="mastDocTypeOptions" type="Object" />
+    <aura:attribute name="bPredefinedDocs" type="boolean" default="false" />
+    <aura:attribute name="predefinedDocTypes" type="List" default="[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="cmpEvent" event="c:SecureFileUploadEvt" action="{!c.handleComponentEvent}" />
+    <aura:attribute name="listConversion" type="List" access="global"/> 
+    <aura:attribute name="conversion" type="ContentVersion" default="{'sobjectType': 'ContentVersion'}" access="global"/>
+
+    <lightning:layout>
+        <lightning:layoutItem size="12">
+            <aura:if isTrue="{!v.bPredefinedDocs}">
+                <!-- Sart Predefined documents -->
+                <aura:iteration items="{!v.files}" var="file" indexVar="rowCount">
+                    <div class="slds-m-vertical_x-small slds-p-bottom_small slds-m-left_small slds-border_bottom">
+                        <div class="slds-float--left slds-m-top_small  slds-size--11-of-12"><b>File #
+                                {!rowCount+1}:{!file.selectedType}</b></div>
+                        <div class="slds-clearfix"></div>
+                    </div>
+                    <lightning:layoutItem class="slds-p-around_small" size="12">
+                        <c:FileUploadUtil childKey="{!rowCount}" accept="{!v.accept}" maxFileSize="{!v.maxFileSize}"
+                            acceptMessage="" aura:id="upload" />
+                    </lightning:layoutItem>
+                </aura:iteration> <!-- End Predefined documents -->
+                <aura:set attribute="else">
+                    <!-- Start Regual Type documents -->
+                    <aura:iteration items="{!v.files}" var="file" indexVar="rowCount">
+
+                        <div class="slds-m-vertical_x-small slds-p-bottom_small slds-m-left_small slds-border_bottom">
+                            <div class="slds-float--left slds-m-top_small  slds-size--11-of-12"><b>File #
+                                    {!file.rowCount}</b></div>
+                            <div class="slds-float--left slds-m-left_small">
+                                <aura:if isTrue="{!file.rowCount != 1}">
+                                    <lightning:buttonIcon name="{!file.rowCount}" class="slds-m-left_medium"
+                                        iconName="utility:delete" onclick="{!c.removeRow}" />
+                                </aura:if>
+                            </div>
+                            <div class="slds-clearfix"></div>
+                        </div>
+                        <lightning:layout multipleRows="True">
+                            <lightning:layoutItem class="slds-p-around_small" size="6">
+                                <lightning:select name="{!file.rowCount}" aura:id="conCategory" label="Category"
+                                    value="{!file.selectedCategory}" onchange="{!c.getDocTypeValsOnCategory}">
+                                    <aura:iteration items="{!v.docCategoryOptions}" var="item">
+                                        <option value="{!(item == 'Select..' ? '' : item)}">{!item}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem class="slds-p-around_small" size="6">
+                                <lightning:select aura:id="DocType" label="Document Type" required="true"
+                                    value="{!file.selectedType}"
+                                    messageWhenValueMissing="Please select a document type">
+                                    <aura:iteration items="{!file.typeOptions}" var="item">
+                                        <option value="{!(item == 'Select..' ? '' : item)}">{!item}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+
+                            <c:FileUploadUtil childKey="{!rowCount}" accept="{!v.accept}" maxFileSize="{!v.maxFileSize}"
+                                acceptMessage="Acceptable file types that can be uploaded:" aura:id="upload" />
+
+                            <lightning:layoutItem class="slds-p-around_small" size="6"></lightning:layoutItem>
+                        </lightning:layout>
+                    </aura:iteration>
+                    <lightning:layout multipleRows="True">
+                        <aura:if isTrue="{!(v.maxFiles - v.files.length) > 0}">
+                            <lightning:LayoutItem padding="around-small" size="12">
+                                <div class="slds-theme_shade slds-clearfix">
+                                    <div class="slds-float_left slds-media slds-media_center">
+                                        <div class="slds-media__figure">
+                                            <lightning:icon iconName="action:new" size="xx-small"
+                                                onclick="{!c.addRow}" />
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>Upload another document ({!v.maxFiles - v.files.length} Left)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning:LayoutItem>
+                        </aura:if>
+                    </lightning:layout>
+                </aura:set> <!-- End Regual Type documents -->
+            </aura:if>
+            <lightning:layoutItem class="slds-p-around_large" size="12">
+                <lightning:button variant="brand" label="Verify Temporary" onclick="{!c.save}" aura:id="savebtn" />
+            </lightning:layoutItem>
+
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-size--2-of-12"></lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

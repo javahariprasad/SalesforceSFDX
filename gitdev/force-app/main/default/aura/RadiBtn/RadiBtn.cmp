@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes">
+   
+    <aura:attribute name="options" type="List" default="[
+                                                        { 'value': 'option1', 'label': '&lt;b&gt;Salesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss&lt;/b&gt;' },
+                                                        { 'value': 'option2', 'label': 'Force' }
+                                                        ]"/>
+    <aura:attribute name="value" type="String" default="option1"/>
+   
+    <div class="slds-box slds-theme--default">      
+        <lightning:radioGroup name="radioGroup"
+                              label="Radio Group"
+                              options="{! v.options }"
+                              value="{! v.value }"
+                              type="radio"/>
+    </div>
+   
+</aura:component>

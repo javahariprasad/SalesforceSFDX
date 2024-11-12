@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="eId" type="String"/>
+    <aura:attribute name="eName" type="String"/> 
+    <aura:attribute name="eCity" type="String"/>  
+</aura:event>

@@ -1,0 +1,51 @@
+<template>
+    <div class="c-container center" >
+        <lightning-layout multiple-rows> 
+        
+        <lightning-layout-item size="6" class="leftpanel">
+           
+            <div class="slds-col spanmsg slds-p-left_xx-large slds-p-right_xx-large slds-p-top_x-small">
+                <span class="error spanmsg">{loginErrorMsg}</span>
+             </div>
+            
+            <div class="slds-col slds-p-left_xx-large slds-p-right_xx-large slds-input-has-icon slds-input-has-icon_left"> 
+                <lightning-icon class="blue-icon" icon-name="utility:user" alternative-text="username" size="xx-small"></lightning-icon>
+                <input type="text" data-id="inputEmail" placeholder="Username" class="slds-box slds-input input-element" onfocusout={handleUserNameChange} required />
+                <div class="slds-col">
+                    <span class="error">{emailErrormsg}</span>
+                </div> 
+            </div>            
+                
+            <div class="slds-col slds-p-left_xx-large slds-p-right_xx-large slds-p-top_x-small slds-input-has-icon slds-input-has-icon_left">
+                <input type="password" data-id="inputPassword" placeholder="Password"  class="slds-box slds-input input-element" onfocusout={handlePasswordChange} required/>
+                <div class="slds-col">
+                    <span class="error">{pwdErrormsg}</span>
+                </div> 
+             </div> 
+                   
+            <div class="slds-col slds-p-left_xx-large slds-p-right_xx-large slds-p-top_x-small">
+                <button type="submit" class="login-button " onclick={doLogin}>Log In</button>
+  
+                   <div class="slds-col slds-p-left_xx-large slds-p-right_xx-large slds-var-p-top_large slds-form-element__control">
+                         <a  class="qa-forgot-password-link" href={forgotpwdURL}>Forgot Password?</a>
+                    </div>
+            </div>
+            <div class="slds-col slds-p-left_xx-large slds-p-right_xx-large slds-p-top_xx-small">
+                    <input type="checkbox" name="options" id="checkbox-unique-id-80" value="checkbox-unique-id-80" checked="" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-80">
+                    <span class="slds-checkbox_faux slds-form-element__label">Remember Me</span>
+                    </label>
+             </div>
+            
+           </lightning-layout-item> 
+             
+           <lightning-layout-item size="6" class="rightpanel">       
+              <div class="slds-p-left_xxx-small rightpanel">
+                <p>Welcome to Safe At Work.</p>
+                <p>Please enter the email address and password you use to log in to your Copany's Talent Community.</p>     
+            </div>  
+           </lightning-layout-item> 
+             
+        </lightning-layout>
+    </div>
+</template>

@@ -1,0 +1,195 @@
+<template>
+    
+    
+    <lightning-accordion class="example-accordion"
+                         onsectiontoggle={handleToggleSection}
+                         active-section-name={accordianSection}
+                         allow-multiple-sections-open>
+        
+        <lightning-accordion-section name="E" label="Evaulation">  
+
+                            <lightning-accordion-section name="B" label="Forbearnce Plan                  (Eligible)">
+                                
+                                <div class="c-container">  
+
+                                    <lightning-layout>
+                                        <lightning-layout-item size="6" >
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2">
+                                            <div class="slds-text-heading_small">Required</div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2">
+                                            <div class="slds-text-heading_small">Actual</div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2">
+                                            <div class="slds-text-heading_small"> Result</div>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+
+                                    <lightning-layout multiple-rows = "true" vertical-align="stretch">
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You are not able to cure the deliquency in less than siz(6) methods.</p>
+                                             </div>                                     
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0.</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box">
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+                                        
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You are not able to cure the deliquency in less than siz(6) methods333.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+                                        
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You are not the borrower; thereore,you are not liable for the mortgage indebtedness.See enclosed Mortgage Assumption information.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2"  flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+
+
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You are not the evaluated for this forceclosure prevention alternative due to your request to leave your home.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You are not reviewed for this forceclosure prevention alternative due to your requuest to leave your home.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>                                        
+                                        
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You loan is less than thirty(30) days past due.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+                                    
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You loan is not defauult and default is not necessarly forceable.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You mortage loan is subject to recourse with the investor.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto"  class="slds-box" >
+                                            <div > <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div > <p>You proposed forceclosure prevention alternative was not approved by the Bankrupty court.</p></div>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div > <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+
+                                        <lightning-layout-item size="6" flexibility="auto" class="slds-box" >
+                                            <div> <p>You are approved for a loss mitigation option higher in the investor's evalution order ranking.</p></div>
+                                        </lightning-layout-item>
+
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div> <p>0</p></div>                                            
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="2" flexibility="auto" class="slds-box" >
+                                            <div class="slds-text-color_success"> <p>Pass</p></div> 
+                                        </lightning-layout-item>
+
+                                       
+                                    </lightning-layout>
+                                    
+                            </div>
+                        </lightning-accordion-section>
+                        <lightning-accordion-section name="RP" label="Repayment Plan (Not Evaluated)"  ></lightning-accordion-section>
+                        <lightning-accordion-section name="DM" label="Disater Modification (Not Evalutaed)"></lightning-accordion-section>
+                        <lightning-accordion-section name="FM" label="Flex Modification - Streamline  (Not Evaluated)"></lightning-accordion-section>                  
+
+                        </lightning-accordion-section>                 
+        
+            
+       
+    </lightning-accordion>
+
+    <div class="c-container">  
+
+        <lightning-layout multiple-rows = "true" class="slds-box" horizontal-align="center">
+            <lightning-layout-item size="12" flexibility="auto" >
+                <div class="slds-text-align_center slds-p-bottom_large">
+                    Woud you like to Approve Loss mitigation Workout? 
+                </div>                   
+            </lightning-layout-item>
+            <lightning-layout-item size="12" flexibility="auto">
+                <div class="slds-text-align_center">
+                    <lightning-button variant="destructive" label="Aprove LM" title="Approve LM" onclick={approveHandler} ></lightning-button>
+                </div>                
+            </lightning-layout-item>
+            
+        </lightning-layout>
+    </div>
+
+</template>

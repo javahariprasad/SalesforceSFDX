@@ -1,0 +1,85 @@
+body {
+    background-size: cover;    
+    background-image: url("/resource/loginBackground"); /*choose image from static resource*/
+}
+
+.center {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slds-box {
+    border: 2px solid rgb(3, 87, 151);
+}
+
+.login-button {
+    
+    background-color: rgb(3, 87, 151);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+    font-size: 16px;
+    font-family: Arial;
+}
+
+.input-icon {
+    margin: 0.4rem 0.1rem;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.input-element {
+
+    padding: 0.5rem 0rem 0.5rem 2rem;
+    font-size: 16px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.slds-grid_vertical .slds-col {
+
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+.blue-icon{
+    --lwc-colorTextIconDefault: rgb(3, 87, 151);
+}
+
+.forgot-password-text {
+
+    color: rgb(3, 87, 151);
+    text-align: left;
+}
+
+
+.divcol {
+    background-color: rgb(3, 87, 151);
+}
+.center {
+
+    padding: 50% 70% 40% 0px;
+
+    color: rgb(153, 159, 163);
+
+    background-color: rgb(3, 87, 151);
+}
+
+.topmidc {
+
+    padding-top: 30%;
+    padding-right: 30%;
+}
+
+.midc {
+  
+    padding-right: 30%;
+}

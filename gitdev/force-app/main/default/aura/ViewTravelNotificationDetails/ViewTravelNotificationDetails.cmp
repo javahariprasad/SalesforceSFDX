@@ -1,0 +1,153 @@
+<aura:component
+                controller = "TravelNotificationController" implements="lightning:availableForFlowScreens,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global">
+    
+    <aura:attribute name="cardNumber" type="String"/>
+    <aura:attribute name="notifications" type="List"/>
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="balance" type="String" default="$70.00"/>
+    <aura:attribute name="notificationDetails" type="Object"/>
+    <aura:handler event="c:TravelModalEvent" action="{!c.handleApplicationEvent}"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <aura:attribute name="notifications2" type="String" default=""/>
+    <aura:attribute name="objNotifications" type="String" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />    
+    <lightning:layout multiplerows='true'>
+        <lightning:layoutItem class="slds-align_absolute-center slds-grid slds-text-align_left slds-wrap" size="12" largeDeviceSize="7">
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7">            
+                <div class="slds-p-left_small slds-p-right_xx-large slds-top_bottom slds-p-top_xx-small">
+                <div class="slds-m-top_medium">
+                    <aura:unescapedHtml value="{!$Label.c.travelCrediCardlbl}"/>
+                </div>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" size="12" largeDeviceSize="7"> 
+                    <div class="divbackgroundColor slds-p-left_medium border slds-p-right_small border slds-top_bottom slds-p-top_xx-small">               
+                        <lightning:layoutItem>
+                            <div class="slds-p-bottom_small slds-p-top_small slds-grid slds-gutters slds-grid--vertical-align-center"> 
+                                 <lightning:layoutItem class="slds-text-align_left" size="6">
+                                        <div class="slds-p-left_medium slds-text-body_small">
+                                             <lightning:icon class="close" iconName="standard:event" label = '144' size="xx-medium" alternativeText="Search address" onclick="{!c.edittravel}"/>
+                                             <span class="slds-p-left_small slds-text-body_small"  ><aura:unescapedHtml value="{!v.notificationDetails.cardNumber}"/></span><br/>
+                                        </div>
+                                    
+                                </lightning:layoutItem> 
+                                <lightning:layoutItem class="slds-float_right" size="6">
+                                    <div class="slds-col slds-text-body_small slds-float_right ">
+                                        <span class="fontWeightBold clsspanlocation slds-float_right">{!v.balance}</span> 
+                                        <br/>
+                                         <span class="slds-float_right slds-text-body_small">Current balance</span>
+                                    </div>
+                                   
+                                         <div>                        
+                                       
+                                   </div>
+                                     
+                                </lightning:layoutItem>
+                            </div> 
+                        </lightning:layoutItem>   
+                    </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7"> 
+                <div class="slds-text-longform slds-p-left_small slds-p-right_small slds-p-top_small">             
+                  <ul>              
+                    <li>  <aura:unescapedHtml value="{!$Label.c.travelallcardholders}"/> </li> 
+                  </ul>
+                </div>
+            </lightning:layoutItem>       
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7"> 
+                <div class="slds-text-heading-xx_small slds-p-left_small slds-p-right_x-large slds-top_bottom slds-p-top_xx-small">
+                    <aura:unescapedHtml value="{!$Label.c.travedetailslbl}"/>
+                </div>
+                <div class="greyborder"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7">          
+                <div class="slds-text-heading-xx_small slds-m-top_medium slds-m-bottom_medium slds-p-left_medium slds-text-body_small lblTextColor">
+                    DESTINATIONS
+                </div>
+                
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7"> 
+                <div class="divbackgroundColor slds-p-left_medium slds-p-right_xx-large border slds-top_bottom slds-border_top slds-border_bottom slds-p-top_xx-small">
+                    <lightning:layoutItem>
+                        <div class="slds-p-bottom_small slds-p-top_small slds-grid slds-gutters"> 
+                            <lightning:layoutItem class="" size="12">
+                                <div class="slds-col" >
+                                    <span class="clsspanlocation">{!v.notificationDetails.location}</span>                           
+                                </div>
+                            </lightning:layoutItem> 
+                        </div> 
+                    </lightning:layoutItem>   
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7">         
+                <div class="slds-p-left_medium slds-p-right_small border slds-top_bottom slds-p-top_xx-small">
+                    <lightning:layoutItem>
+                        <div class="slds-p-top_small slds-grid slds-gutters "> 
+                            <lightning:layoutItem size="7">
+                                <div class="slds-col slds-text-body_small lblTextColor lblTextColor" >
+                                     DEPARTURE DATE                                                                       
+                                </div>
+                            </lightning:layoutItem> 
+                            <lightning:layoutItem size="5">
+                                <div class="slds-col slds-float_right">
+                                    <span class="clsspanlocation">{!v.notificationDetails.depDate}</span>
+                                </div>
+                            </lightning:layoutItem>
+                        </div> 
+                    </lightning:layoutItem>   
+                </div>
+                
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7">        
+                <div class="slds-p-left_medium slds-p-right_small border slds-top_bottom slds-p-top_xx-small">
+                    <lightning:layoutItem>
+                        <div class="slds-p-top_small slds-grid slds-gutters"> 
+                            <lightning:layoutItem class="" size="7">
+                                <div class="slds-col slds-text-body_small lblTextColor" >
+                                  RETURN DATE
+                                </div>
+                            </lightning:layoutItem> 
+                            <lightning:layoutItem  size="5">
+                                <div class="slds-col slds-float_right">
+                                    <span class="clsspanlocation">{!v.notificationDetails.retDate}</span>
+                                </div>
+                            </lightning:layoutItem>
+                        </div> 
+                    </lightning:layoutItem>   
+                </div>
+                
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7">         
+                <div class="slds-p-left_medium slds-p-right_small border slds-top_bottom slds-p-top_xx-small">
+                    <lightning:layoutItem>
+                        <div class="slds-p-top_small slds-grid slds-gutters"> 
+                            <lightning:layoutItem size="6">
+                                <div class="slds-col slds-text-body_small lblTextColor" >
+                                   CONTACT PHONE 2
+                                </div>
+                            </lightning:layoutItem> 
+                            <lightning:layoutItem size="6" >
+                                <div class="slds-col slds-float_right">
+                                    <span class="clsspanlocation">{!v.notificationDetails.secondaryPhone}</span>
+                                </div>
+                            </lightning:layoutItem>
+                        </div> 
+                    </lightning:layoutItem>   
+                </div>        
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-p-bottom_small slds-text-align_center slds-p-top_large" flexibility="auto" size="12" largeDeviceSize="7"> 
+                <div class="slds-p-center_xx-large slds-p-center_large">
+                    <lightning:button class="slds-button slds-button_destructive slds-text-body_small slds-button--small" label="DELETE TRAVEL NOTIFICATION" aura:id="savebtn" onclick="{!c.handleShowModal}"/>
+                </div>
+                <div class=" slds-p-center_xx-large slds-p-center_xx-large slds-size_full slds-p-around_medium">
+                    <lightning:button  class ="navyblue slds-text-body_small slds-button--large slds-p-left_large slds-p-right_large" variant = 'brand' label="EDIT TRAVEL NOTIFICATION"   aura:id="savebtn"/>
+                </div>   
+            </lightning:layoutItem>
+    </lightning:layoutItem> 
+    
+    
+    
+    </lightning:layout>
+</aura:component>

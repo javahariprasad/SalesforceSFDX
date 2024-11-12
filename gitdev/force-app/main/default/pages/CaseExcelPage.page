@@ -1,0 +1,214 @@
+<apex:page id="pg" standardStylesheets="false" StandardController="Case" extensions="ExportExcel" contenttype="application/vnd.ms-excel#MultiSheetExcel.xls">
+{!xmlheader}
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" 
+          xmlns:o="urn:schemas-microsoft-com:office:office" 
+          xmlns:x="urn:schemas-microsoft-com:office:excel" 
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" 
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+
+<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+<WindowHeight>8535</WindowHeight>
+<WindowWidth>12345</WindowWidth>
+<WindowTopX>480</WindowTopX>
+<WindowTopY>90</WindowTopY>
+<ProtectStructure>False</ProtectStructure>
+<ProtectWindows>False</ProtectWindows>
+</ExcelWorkbook>
+
+<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+<Author>Keerti Yadav</Author>
+<LastAuthor></LastAuthor>
+<Company>Ktforce</Company>
+<Version>11.6360</Version>
+</DocumentProperties>
+<OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+<AllowPNG/>
+</OfficeDocumentSettings>
+
+<Styles>
+<Style ss:ID="Default" ss:Name="Normal">
+<Alignment ss:Vertical="Bottom"/>
+<Borders/>
+<Font ss:bgcolor="#FF0000"/>
+<Interior ss:bgcolor="#FF0000"/>
+<NumberFormat/>
+<Protection/>
+</Style>
+<Style ss:ID="s16">
+<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="13" ss:Color="#d3d3de" ss:Bold="1" ss:Border="1" />
+<Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+</Borders>
+<Interior ss:Color="#a6a6a6" ss:Pattern="Solid" ss:Border="1"/>
+</Style>
+<Style ss:ID="s16data">
+<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="13" ss:Color="#000000" ss:Border="1" />
+</Style>
+<Style ss:ID="s17">
+
+<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="13" ss:Color="#000000" ss:Bold="1"/>
+
+</Style>
+<Style ss:ID="c11">
+<Font x:Family="Swiss" ss:FontName="Calibri" ss:Size="11" ss:Bold="0" ss:Color="#00ff00"/>
+</Style>
+<Style ss:ID="c16">
+<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="13" ss:Color="#000080" ss:Bold="1" ss:bgcolor="#FF0000" ss:Border="1" />
+<Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+<Borders>
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+</Borders>
+<Interior ss:Color="#a6a6a6" ss:Pattern="Solid" ss:Border="1"/>
+</Style>
+<Style ss:ID="s66">
+<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Color="#000000" />
+</Style>
+<Style ss:ID="s67">
+<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="13" ss:Color="#000000" />
+</Style>
+</Styles>
+
+<Worksheet ss:Name="Case Record">
+<Table ss:ExpandedColumnCount="100">
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Column ss:Width="180"/>
+<Row>
+<Cell ss:StyleID="s66">
+<Data ss:Type="String">
+Account Data Requested
+</Data>
+</Cell>
+</Row>
+<Row>
+<Cell />
+<Cell />
+<Cell ss:StyleID="s67">
+<Data ss:Type="String"> Account data Processed</Data>
+</Cell>
+</Row>
+<Row>
+<Cell />
+<Cell />
+<Cell ss:StyleID="s67">
+<Data ss:Type="String"></Data>
+</Cell>
+</Row>
+<Row></Row>
+<Row> 
+
+<Cell ss:StyleID="c16" ><Data ss:Type="String">Account Name</Data></Cell>
+<Cell ss:StyleID="c16" ><Data ss:Type="String">Account Owner</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Company</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Shipping Address1</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Shipping Country</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Shipping State</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Shipping City</Data></Cell>
+<Cell ss:StyleID="s16" ><Data ss:Type="String">Shipping PostalCode</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Billing Address1</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Billing Country</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Billing State</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Billing City</Data></Cell>
+<Cell ss:StyleID="s16" ><Data ss:Type="String">Billing PostalCode</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Annual Revenue</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Is Active</Data></Cell>
+<Cell ss:StyleID="s16" ><Data ss:Type="String">Investment Average</Data></Cell>
+<Cell ss:StyleID="s16"><Data ss:Type="String">Investment Status</Data></Cell>
+<Cell ss:StyleID="c16"><Data ss:Type="String"> No of Location</Data></Cell>
+
+</Row>
+
+<apex:repeat value="{!cWrapper}" var="rowVal">
+<Row>
+<Cell ss:StyleID="s16data"><Data ss:Type="String"> {!rowVal.Id}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber} </Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber} </Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber} </Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String">{!rowVal.CaseNumber}</Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String"> N/A </Data></Cell>
+<Cell ss:StyleID="s16data"><Data ss:Type="String"> Krtydv </Data></Cell>
+
+</Row>
+
+</apex:repeat>
+</Table>
+
+<DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+<Range>R5C2</Range>
+<Type>List</Type>
+<Value>"Keerti yadav,Aarti Yadav,Pooja Yadav,Sumit Yadav,Rajesh Yadav,Shobha Yadav,Yati Yadav"</Value>
+</DataValidation>
+<DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+<Range>R5C4</Range>
+<Type>List</Type>
+<Value>"USA,UK,EUROPE"</Value>
+</DataValidation>
+
+<DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+<Range>R6C2</Range>
+<Type>List</Type>
+<Value>"Keerti yadav,Aarti Yadav,Pooja Yadav,Sumit Yadav,Rajesh Yadav,Shobha Yadav,Yati Yadav"</Value>
+</DataValidation>
+
+<DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+<Range>R6C4</Range>
+<Type>List</Type>
+<Value>"Active,Inactive"</Value>
+</DataValidation>
+<DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+<Range>R7C2</Range>
+<Type>List</Type>
+<Value>"Keerti Yadav"</Value>
+</DataValidation>
+
+</Worksheet>
+<Worksheet ss:Name="Contact Record">
+
+
+</Worksheet>
+</Workbook>
+</apex:page>

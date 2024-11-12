@@ -1,0 +1,64 @@
+<template>
+    <lightning-card title={titleWithCount} icon-name="standard:record">
+        <lightning-button-menu alternative-text="Show menu" variant="border-filled" icon-size="x-small" icon-name="utility:down" slot="actions">
+            <lightning-menu-item value="CreateNew" label="New" onclick={createNew}></lightning-menu-item>
+        </lightning-button-menu>
+    <div slot="footer">
+        <div  if:true={countBool}>
+            <lightning-button label="View All" variant="bare" onclick={navigateToRelatedList}></lightning-button>
+        </div>
+    </div>    
+    <div class="c-container">
+        <template for:each={listRecords} for:item="rec">
+            <div key={rec.Id}>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item class="slds-m-left_small" size="12">
+                        <div>
+                            <h2><a onclick={handleClick} data-oppid={rec.Id}>Name</a></h2>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12">
+                        <lightning-layout>
+                            <lightning-layout-item class="slds-m-left_small slds-m-bottom_small" size="4">
+                                    <p>Case Number :</p>
+                                    <p>Email : </p>
+                                    <p>Email 2: </p>
+                            </lightning-layout-item>
+                            <lightning-layout-item class="slds-m-left_small slds-m-bottom_small" size="8">
+                                <div class="page-section page-main">                            
+                                    <p>&nbsp;</p>
+                                    <p>{rec.CaseNumber}&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </lightning-layout-item>                    
+                        </lightning-layout>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+        <label class="slds-form-element__label" style="font-size: 14px">Please attach any relevant documentation.</label><br /><br />
+          <div class="slds-align_absolute-center">
+            <div class="slds-box">
+              <label><abbr>Attachment</abbr></label>
+              <lightning-file-upload name="fileUploader" record-id={caseId} accept={acceptedFormats}
+                onuploadfinished={handleUploadFinished} multiple>
+              </lightning-file-upload>  
+              <template for:each={filesUploaded} for:item="file">
+                <lightning-pill class="slds-pill slds-pill_link" href="javascript:void(0);" key={file.contentVersionId}
+                  name={file.contentVersionId} label={file.name} onremove={removefilePill}>
+                </lightning-pill><br key={file.contentVersionId} />
+              </template>
+              <b>
+                <h1 style="color: #0195d3" class="slds-p-left_medium slds-p-right_medium headerStyle">
+                  Please upload your attachments here if applicable.
+                </h1>
+              </b>
+              <br />
+              <p style="color: #0195d3" class="slds-p-left_medium slds-p-right_medium headerStyle">
+                Accepted File Types: .pdf,.doc,.docx,.jpg,.jpeg,.png
+              </p>
+            </div>
+          </div>  
+    </div>
+</lightning-card>
+</template>

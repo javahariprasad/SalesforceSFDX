@@ -1,0 +1,15 @@
+.center {
+    background-color: rgb(3, 87, 151);
+    color: white;    
+    align-items: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    margin-top: 0;
+    height: 100vh;
+    
+}

@@ -1,0 +1,36 @@
+<aura:component>
+     
+    <aura:attribute name="eId" 	 type="String" default=""/>
+    <aura:attribute name="eName" type="String" default=""/>
+    <aura:attribute name="eCity" type="String" default=""/>
+    <aura:registerEvent name="cmpEvent" type="c:EmpEvent" />
+     <div class="slds-align_absolute-center">
+       <lightning:layout multipleRows="True">
+                  <lightning:layoutItem class="slds-p-around_large" size="4">
+                     <div class="slds-grid slds-grid_vertical-align-center">
+                        <label class="slds-form-element__label textInput">Employee Id</label>
+                       <lightning:input aura:id="f1" value="{!v.eId}" Name="eId" variant="label-hidden" required = "true" />
+                    </div>                     
+                </lightning:layoutItem>
+                
+                  <lightning:layoutItem class="slds-p-around_large" size="4">
+                     <div class="slds-grid slds-grid_vertical-align-center">
+                        <label class="slds-form-element__label textInput">Emp.Name</label>
+                       <lightning:input aura:id="f1" value="{!v.eName}" Name="eName" variant="label-hidden" required = "true" />
+                    </div>                     
+                </lightning:layoutItem>
+                
+                  <lightning:layoutItem class="slds-p-around_large" size="4">
+                     <div class="slds-grid slds-grid_vertical-align-center">
+                        <label class="slds-form-element__label textInput">City</label>
+                       <lightning:input aura:id="f1" value="{!v.eCity}" Name="eName" variant="label-hidden" required = "true" />
+                    </div>                     
+                </lightning:layoutItem>
+               <lightning:layoutItem class="slds-p-around_small" size="11">                
+                    <lightning:button variant="brand" class="slds-float_right" label="Submit" onclick="{!c.save}"  aura:id="savebtn"/>               
+                </lightning:layoutItem>
+           
+       </lightning:layout> 
+           
+    </div>
+</aura:component>

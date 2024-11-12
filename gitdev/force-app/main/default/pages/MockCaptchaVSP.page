@@ -1,0 +1,44 @@
+<apex:page showHeader="false" contentType="text/html"> 
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/>
+    
+    <script src='http://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' />
+    
+    <div id="widgetId1" class="g-recaptcha" style="transform: scale(0.74);transform-origin: 0 0;-webkit-transform:scale(0.74);-webkit-transform-origin: 0 0"></div>
+
+    <style>
+        body, div{
+            background:transparent !important;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('widgetId1', {
+              'sitekey' : '6LeAQJ8UAAAAALRb4veFmfIwmonYsMBYwQPwlvs-', 
+              'data-size' : 'compact',
+              'data-theme' : 'light'
+            });
+        };
+
+
+        window.addEventListener("message", function(event) {
+            var hostURL = 'https://haritcs-dev-ed.lightning.force.com';
+            if(event.origin !== hostURL){
+                return;
+            }
+            
+            if(event.data.action == "alohaCallingCAPTCHA"){  
+                var message = document.getElementById("g-recaptcha-response").value;
+                alert("message .."+message);
+                if (message == ""){
+                    //parent.postMessage({ action: "alohaCallingCAPTCHA", alohaResponseCAPTCHA : "NOK" }, hostURL);
+                }
+                else{
+                    //parent.postMessage({ action: "alohaCallingCAPTCHA", alohaResponseCAPTCHA : "OK",recaptchaResp: message },  hostURL);
+                }
+            }
+
+        }, false);
+        
+    </script>
+</apex:page>

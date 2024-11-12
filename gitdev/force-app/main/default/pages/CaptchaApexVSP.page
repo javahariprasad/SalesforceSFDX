@@ -1,0 +1,26 @@
+<apex:page showheader="false"  controller="reCAPTCHA2_Controller" > 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen"/> 
+    <div class="jumborton"> 
+        <apex:pageBlock > 
+            <apex:pageMessages /> 
+            <apex:form > 
+                <apex:pageBlockSection columns="1" collapsible="true" title="Create Contact useing reCaptcha"> 
+                    <apex:pageBlockSectionItem > <apex:outputLabel for="inputName" value="First Name"/> 
+                        <apex:inputText value="{!myfName}" id="inputName"/> 
+                        </apex:pageBlockSectionItem> <apex:pageBlockSectionItem > 
+                        <apex:outputLabel for="inputName" value=" Last Name"/> 
+                            <apex:inputText value="{!mylName}" id="inputName"/> 
+                            </apex:pageBlockSectionItem> 
+                            <apex:pageBlockSectionItem > 
+                                <apex:outputLabel for="inputEmail" value="Email"/> 
+                                 <apex:inputText value="{!myEmail}" id="inputEmail"/> 
+                                  </apex:pageBlockSectionItem> 
+                                    <div class="g-recaptcha" data-sitekey="{!sitekey}"></div> 
+                                    <script src="https://www.google.com/recaptcha/api.js"></script> 
+                                    <br/> 
+                                        <apex:commandButton value="Submit" action="{!doVerify}"/> 
+                                        </apex:pageBlockSection> 
+                                        </apex:form> 
+                                        </apex:pageBlock> 
+                                        </div> 
+                                        </apex:page>

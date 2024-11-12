@@ -1,0 +1,27 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+    <aura:registerEvent name="cmpEvent" type="c:SecureFileUploadEvt" />
+    <aura:attribute name="childKey" type="String" />
+    <aura:attribute name="fileName" type="String" default="" />
+    <aura:attribute name="accept" type="String" default="" />
+    <aura:attribute name="maxFileSize" type="Integer" default="3" />
+    <aura:attribute name="acceptMessage" type="String" default="" />
+    <lightning:layoutItem class="slds-p-left_small" size="12">
+        <lightning:input aura:id="fileId" onchange="{!c.handleFilesChange}" type="file" name="file" label="Attachment"
+            multiple="false" />
+        <lightning:layoutItem class="slds-p-around_small slds-size--12-of-12">
+        <aura:if isTrue="{!v.acceptMessage!=''}">          
+                <div>
+                    <aura:unescapedHtml value="{!v.acceptMessage}" />
+                </div>            
+        </aura:if>
+            </lightning:layoutItem>
+        <aura:if isTrue="{!v.fileName!=''}">
+            <p> {!v.fileName}
+                <lightning:buttonIcon name="delete" class="slds-m-left_medium" iconName="utility:delete"
+                    onclick="{!c.removeAttachment}" />
+            </p>
+        </aura:if>
+    </lightning:layoutItem>
+</aura:component>

@@ -1,0 +1,39 @@
+<aura:tokens extends='forceCommunity:base'>
+    <aura:token name="backgroundColor" value="#FFFFFF" />
+    <aura:token name="textColor" value="#282828" />
+    <aura:token name="btnbackgroundColor" value="#558B2F" />
+    <aura:token name="btnSecondaryColor" value="#037FB0" />
+    <aura:token name="btnTextColor" value="white" />
+    <!--colors for errorLevel boxes, HeaderProductDisplay and HeaderContactUs (added by Alayna)-->
+    <aura:token name="primaryBlack" value="rgb(40, 40, 40)" />
+    <aura:token name="greyLight" value="rgba(0,0,0,0.3)" />
+    <aura:token name="orangeColorOpacity" value="rgba(245, 166, 35, .05)" />
+    <aura:token name="orangeColor" value="rgb(245, 166, 35)" />
+    <aura:token name="blueColorOpacity" value="rgba(3, 127, 176, .05)" />
+    <aura:token name="blueColor" value="rgb(3, 127, 176)" />
+    <aura:token name="redColorOpacity" value="rgba(196, 28, 48, .05)" />
+    <aura:token name="redColor" value="rgb(196, 28, 48)" />
+    <aura:token name="whiteColor" value="white" />
+    <aura:token name="whiteColorOpacity" value="rgba(255,255,255,.95)" />
+    <aura:token name="lightBlue" value="rgb(0, 112, 210)" />
+    <aura:token name="turquoise" value=" #11C5B6" />
+    <aura:token name="greenButton" value="#558B2F" />
+    <aura:token name="greenButtonOpacity" value="rgba(85, 139, 47, .25)" />
+    <aura:token name="greenButtonHover" value="rgb(65, 109, 35)" />  
+    <aura:token name="pffontSize10" value="{!fontSize10}" />
+    <aura:token name="pffontSize8" value="{!fontSize8}" />
+    <aura:token name="pffontSize5" value="{!fontSize5}" />
+    <aura:token name="pffontSize4" value="{!fontSize4}" />
+    <aura:token name="pffontSize2" value="{!fontSize2}" />
+    <aura:token name="pfColorTextLink" value="{!colorTextLink }" />
+    <aura:token name="pfColorTextBrand" value="{!colorTextBrand}" />
+    <aura:token name="pfmqSmall" value="{!mqSmall}" />
+    <aura:token name="greyborder" value="1px solid gray"/>
+    <aura:token name="navyblue" value="#16325c"/>
+    <aura:token name="lblhdTextColor" value="#59606E"/>
+    <aura:token name="lblTextColor" value="#1F415F"/>
+    
+    
+    
+    
+</aura:tokens>

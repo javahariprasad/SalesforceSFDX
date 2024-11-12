@@ -1,0 +1,19 @@
+.THIS {
+}
+.THIS.slds-box {
+    border: 4px solid blue;
+}
+
+.THIS .textInput{
+    color: blue;
+    font-weight: bold;
+    
+}
+.THIS .myCss thead th span{
+    background-color:  grey;
+    color: blue;    
+}
+
+.THIS .myCss td:hover {    
+    font-weight:bold !important;
+}

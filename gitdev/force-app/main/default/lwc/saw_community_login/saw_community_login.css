@@ -1,0 +1,68 @@
+.slds-box {
+    border: 2px solid rgb(3, 87, 151);
+    
+}
+
+.login-button {    
+    background-color: rgb(3, 87, 151);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    border-radius: 8px;     
+    font-family: Arial;
+    width: 90%;
+    height: 45px;
+
+}
+
+.blue-icon{
+    --lwc-colorTextIconDefault: rgb(3, 87, 151);
+    --slds-c-icon-color-foreground-default: rgb(3, 87, 151);
+    position: absolute;
+    margin: 0.9rem 0.7rem;
+}
+
+.input-element {
+
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    height: 90%;
+    width: 90%;
+    overflow:hidden;     
+}
+
+::placeholder { 
+    color:rgb(3, 87, 151);
+}
+img {    
+    max-width: 80%;
+    padding-left: 14%;    
+   
+}
+.slds-form-element__label {
+    padding-top: 18x;
+   
+}
+.qa-forgot-password-link{
+   
+}
+.center {
+    background-color: rgb(255, 255,255);   
+    align-items: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    margin-top: 0;
+    height: 100vh;
+    padding: 120px;
+}
+
+.spanmsg{    
+    width: 90%;
+}

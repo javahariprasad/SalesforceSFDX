@@ -1,0 +1,38 @@
+<template>
+    def
+    <lightning-card title={titleWithCount} icon-name="standard:record"> 
+        <lightning-button-menu alternative-text="Show menu" menu-alignment="right" variant="border-filled" icon-size="x-small" icon-name="utility:down" slot="actions">
+            <lightning-menu-item value="CreateNew" label="New" onclick={createNew}></lightning-menu-item>
+        </lightning-button-menu>
+    <div slot="footer">
+        <div  if:true={countBool}>
+            <lightning-button label="View All" variant="bare" onclick={navigateToRelatedList}></lightning-button>
+        </div>
+    </div>    
+    <div class="c-container">
+        <template for:each={listRecords} for:item="rec">
+            <div key={rec.Id}>
+                {rec.Url}
+                <lightning-layout multiple-rows="true">
+                    <!--lightning-layout-item class="slds-m-left_small" size="12">
+                        <div>
+                            <h2><a onclick={handleClick} data-oppid={rec.Id}>Name</a></h2>
+                        </div>
+                    </lightning-layout-item-->
+                    <lightning-layout-item size="12">
+                        <lightning-layout>
+                            <lightning-layout-item class="slds-m-left_small slds-m-bottom_small" size="4">
+                                <lightning-tile
+                                label={rec.ContentDocument.Title} href={rec.docURL}>                               
+                              </lightning-tile>
+                                    
+                            </lightning-layout-item>
+                                           
+                        </lightning-layout>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+    </div>
+</lightning-card>
+</template>

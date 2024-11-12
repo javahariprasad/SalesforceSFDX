@@ -1,0 +1,138 @@
+<apex:page Controller="CustomPDFExtController" renderAs="pdf" standardStylesheets="true"  applyHtmlTag="false"    
+           sidebar="false" showHeader="false" cache="true"    >
+     
+    <!--
+
+    
+    <apex:form >
+    <apex:pageBlock>
+        
+        <apex:pageBlockSection  title="Option 2" id="op2" columns="2">          
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel style="font-size:14px;text-algn:center;border:2px;"> First Name :</apex:outputLabel>
+                <apex:outputLabel style="font-size:14px;text-algn:center;border:2px;"> Learn how to use CSS in Visualforce page</apex:outputLabel>
+            </apex:pageBlockSectionItem>
+            
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel style="margin-left:50px;font-size:14px;text-algn:center;border:2px;">Employee Id :</apex:outputLabel>
+                <apex:outputLabel style="font-size:14px;text-algn:center;border:2px;">  </apex:outputLabel>              
+            </apex:pageBlockSectionItem>
+            
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel style="font-size:14px;text-algn:center;border:2px;"> First Name 222 :</apex:outputLabel>
+                <apex:outputLabel style="font-size:14px;text-algn:center;border:2px;"> Learn how to use </apex:outputLabel>
+            </apex:pageBlockSectionItem>
+            
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel style="margin-left:50px;font-size:14px;text-algn:center;border:2px;">Employee Id2 :</apex:outputLabel>
+                <apex:outputLabel style="font-size:14px;text-algn:center;border:2px;">  </apex:outputLabel>              
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+		
+      
+
+    </apex:pageBlock>    
+ </apex:form> -->
+    
+    <head>   
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />   
+        <style type="text/css">              
+            @page {
+                size: A4 landscape;   
+                border: 1px solid black;   
+                padding-left: 8px;   
+                padding-right: 8px;
+            }  
+            td {
+               font-size: 12px;
+            } 
+            .underline {
+                border-bottom: 0px solid #000;
+            }
+            .tdHeader1 {
+                width:20%;
+                font-weight:bold;
+            }
+            .tdHeader2 {
+                width:18%;
+                font-weight:bold;
+            }
+             .tdHeader3 {
+                width:14%;
+                font-weight:bold;
+            }           
+        </style>             
+    </head>         
+    <center>        
+        <h3>RESTRICTIVE COVENANT INTAKE FORM</h3>             
+    </center><br/><br/>
+    <div style="border:0.5px solid;">
+    <h4>Employee Information</h4>
+    <table border="0" width="80%">
+           <tr>                 
+               <td class="tdHeader1">Former Employee Name :</td> <td class="underline">fddfdd</td>  
+               <td class="tdHeader2">Emloyee Id :</td>  <td class="underline">ddddd</td>                    
+            </tr>
+            <tr>                 
+                <td class="tdHeader1">Date of Hire :</td> <td class="underline">Hire</td>  
+                <td class="tdHeader2">Date of Termination :</td>  <td class="underline">123456</td>                    
+            </tr>
+            <tr>                 
+                <td class="tdHeader1">Reason for Termination :</td> <td class="underline">First Name 222</td>  
+                <td class="tdHeader2">Preferred Email :</td>  <td class="underline">123456</td>                    
+            </tr>
+            
+    </table>
+    <table border="0" width="80%">
+        <tr>
+            <td class="tdHeader1">Present Address :</td> <td class="underline">Learn how to use CSS in Visualforce page gdgdd  gdffffffffffffff dfd</td>  
+        </tr>
+      </table>   
+  </div>
+    
+    <div style="border:0.5px solid;">
+    <h4>previous Allegis Employee Information</h4>
+     <apex:repeat value="{!records}" var="record">    
+        <table border="0" width="80%">      
+               <tr>                 
+                    <td class="tdHeader2">Job Title :</td> <td class="underline">{!record.empname}</td>  
+                    <td class="tdHeader2">Years in Job Title :</td>  <td class="underline">123456</td>
+                    <td class="tdHeader3">Office Location :</td>  <td class="underline">123456</td> 
+                </tr>
+                <tr>
+                    <td class="tdHeader2">OpCo :</td> <td class="underline">Hire</td>  
+                    <td class="tdHeader2">Division Name :</td>  <td class="underline">123456</td>                    
+                </tr>
+        </table>
+              <table border="0" width="80%">
+              <tr><td class="tdHeader2">Industry Suported :</td> <td class="underline"></td></tr>
+              <tr><td class="tdHeader2">Graphic Area Suported :</td> <td class="underline"></td></tr>    
+        </table>
+        <br></br>
+      </apex:repeat>
+  </div>
+    
+    <div style="border:0.5px solid;">
+    <h4>New or pending Employeer Information</h4>
+    <table border="0" width="80%">
+           <tr><td class="tdHeader1">Name :</td> <td class="underline">fddfdd</td></tr>
+           <tr><td class="tdHeader1">Mailing Address :</td> <td class="underline">44444444444444444 4445   44444444444444444444 dfdfdfd dfdfd ffdfd vfdfdf wewe wewew wewe </td></tr>
+           <tr><td class="tdHeader1">Website Address :</td> <td class="underline">First Name 222</td></tr>
+           <tr>
+               <td class="tdHeader1">Phone Number :</td> <td class="underline">First Name 222</td>
+               <td class="tdHeader3">Competitor :</td> <td class="underline">First Name 222</td>
+        	</tr>
+           <tr>
+               <td class="tdHeader1">Industry :</td> <td class="underline">First Name 222</td>
+               <td class="tdHeader3">Job Title :</td> <td class="underline">First Name 222</td>
+        	</tr>
+    </table>
+       <table border="0" width="80%">
+           <tr>
+            	<td class="tdHeader1">Scope of Role/Geographic areas serviced :</td> <td class="underline">fddfdd</td></tr>
+        	<tr>
+            	<td class="tdHeader1" style ="font-weight: bold;">Duties/Responsbilities :</td> <td class="underline">fddfdd</td>
+        	</tr>
+            </table>
+  </div>
+</apex:page>

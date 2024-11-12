@@ -1,0 +1,77 @@
+<aura:component
+                controller = "TravelNotificationController" implements="lightning:availableForFlowScreens,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global">
+    <aura:attribute name="primaryNumber" type="String"/>
+    <aura:attribute name="cardNumber" type="String"/>
+    <aura:attribute name="prodCode" type="String"/>
+    <aura:attribute name="compCode" type="String"/>
+    <aura:attribute name="departureDate" type="String"/>
+    <aura:attribute name="returnDate" type="String"/>
+    <aura:attribute name="notifications" type="List"/>   
+    <aura:attribute name="lstKey" type="List"/>
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="notifications2" type="String" default=""/>
+     <aura:attribute name="objNotifications" type="String" default=""/>
+    
+    <aura:attribute name="screen" type="String" default="get" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+ <lightning:layout class="slds-grid">
+     
+        <lightning:layoutItem size="12" largeDeviceSize="7" class="slds-align_absolute-center slds-text-align_left slds-wrap slds-border_top">
+            
+        <lightning:layoutItem flexibility="auto" size="12"  largeDeviceSize="7">
+            <div class="slds-text-heading-xx_small slds-m-top_medium slds-p-left_large slds-p-right_small">
+                <aura:unescapedHtml value="{!$Label.c.traveltoplbl}"/>
+            </div>
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem class="slds-text-align_center slds-p-top_x-large slds-p-bottom_medium" flexibility="auto" size="12"  largeDeviceSize="7">            
+            <div class="slds-p-center_xx-large slds-p-center_xx-large">
+            	<lightning:button  class ="savebtn" variant = 'brand' label="CREATE TRAVEL NOTIFICATION"   aura:id="createbtn"/>
+        	</div>          
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-text-align_left" flexibility="auto" size="12" largeDeviceSize="7">
+            
+            <div class="slds-text-heading-xx_small slds-m-top_medium slds-p-left_large">
+                <aura:unescapedHtml value="{!$Label.c.travelupcomingtrips}"/>
+            </div>
+            <div class="greyborder"/>
+            
+        </lightning:layoutItem>
+    
+    
+    <lightning:layoutItem flexibility="auto" size="12" largeDeviceSize="7">
+        <aura:iteration items="{!v.notifications}" var="objItem" indexVar="key">  
+        <div class="divbackgroundColor slds-p-left_large border slds-border_bottom">          
+                 <div class="slds-p-bottom_small slds-p-top_small slds-grid slds-gutters slds-p-around_small"> 
+                     <lightning:layoutItem class="" size="11">
+                        <div class="slds-col fontWeightBold"  >
+                            <span>{!objItem.location}</span>
+                        </div>    
+                         <div class ="slds-col">
+                             <span class="clsspandate">{!objItem.startDate} - {!objItem.endDate}</span>
+                        </div>
+                    </lightning:layoutItem> 
+                    <lightning:layoutItem class="slds-grid--vertical-align-center" size="1">
+                        <div class="slds-col slds-float_right">
+                            <lightning:buttonIcon class="icn close slds-icon-text-default" name ="{!key}" iconName="utility:chevronright"  size="x-small" variant="bare" alternativeText="View Travel Notification Details" onclick="{!c.navigateToViewComponent}"/>                          
+                        </div>
+                    </lightning:layoutItem>
+                 </div> 
+           
+        </div>
+        </aura:iteration>    
+    </lightning:layoutItem>
+    
+    	<lightning:layoutItem class="slds-text-align_left " flexibility="auto" size="12" largeDeviceSize="7">
+                <div class="slds-text-heading-xx_small slds-m-top_medium slds-p-left_large slds-p-right_small">
+                <aura:unescapedHtml value="{!$Label.c.travelbottomlbl}"/>
+            </div>
+            
+        </lightning:layoutItem>
+          </lightning:layoutItem> 
+    </lightning:layout>     
+    
+    
+</aura:component>

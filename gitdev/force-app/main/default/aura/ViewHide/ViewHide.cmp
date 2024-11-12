@@ -1,0 +1,35 @@
+<aura:component controller="ViewHideCpController" implements="lightning:availableForFlowScreens,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global">
+    <aura:attribute name="otherIndustry" type="String" />
+    
+    <aura:attribute name="selectValue" type="String" default="--Select--" />
+    <aura:attribute name="options" type="String[]" />
+    
+    
+   <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    
+    <lightning:layout verticalAlign="start" multipleRows="true">
+            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                <lightning:select aura:id="myselection" label = 'Category' value="{!v.selectValue}">
+                    <option value="--Select--">-None-</option>
+                    <aura:iteration items="{!v.options}" var="option">
+                        <option value="{!option}">{!option}</option>
+                    </aura:iteration>	
+				</lightning:select> 
+        </lightning:layoutItem>
+            <aura:if isTrue="{! v.selectValue == 'Education' }">
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small" flexibility="auto">
+                   <lightning:input label="Formal" type = 'text' value  ='' />
+                   <lightning:input label="InFormal" type = 'text' value  ='' />
+                   <lightning:input label="Non-Formal" type = 'text' value  ='' />
+            </lightning:layoutItem>
+        </aura:if>
+        <aura:if isTrue="{! v.selectValue == 'Sports' }">
+            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small" flexibility="auto">
+                <lightning:input label="Indoor" type = 'text' value  ='' />
+                <lightning:input label="OutDoor" type = 'text' value  ='' />  
+        	</lightning:layoutItem>
+         </aura:if>   
+     </lightning:layout>
+    
+</aura:component>

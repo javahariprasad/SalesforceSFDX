@@ -1,0 +1,140 @@
+<aura:component  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" controller="CustomAttachmentsController">
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:attribute name="fileToBeUploaded" type="Object[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="AttachObj" type="Attachment" />
+    <aura:attribute name="ContentDocObj" type="ContentVersion" />
+    <aura:attribute name="slctdRecordId" type="string" />
+    <aura:attribute name="isCaseClosed" type="boolean" default="false"/>
+    <aura:attribute name="isInitiatorUser" type="boolean" default="false"/>
+    <aura:attribute name="allowActionsOnlyToInitiator" type="boolean" default="false" access="global"/>
+    <aura:attribute name="restrictUploadWhenCaseIsClosed" type="boolean" default="false" access="global"/>
+    <aura:attribute name="restrictEditWhenCaseIsClosed" type="boolean" default="false" access="global"/>
+    <aura:attribute name="restrictDeleteWhenCaseIsClosed" type="boolean" default="false" access="global"/>    
+    <aura:attribute name="recentAttachments" type="Attachment[]" default="0"/> 
+    <aura:attribute name="recentContentDocumment" type="ContentVersion[]" default="0"/>
+    <aura:attribute name="recentAttachContentDocuments" type="HRIS_DocumentAttachWrapper[]" default="0"/>
+    <aura:attribute name="AttachWrapper" type="HRIS_DocumentAttachWrapper"/>
+    <aura:attribute name="StatusInfo" type="object"/>
+    <aura:attribute name="recordId" type="string" /> 
+    <aura:attribute name="spinner" type="boolean" default="false" />
+    <aura:attribute name="Sum" type="Integer" default="0"/>
+    <aura:attribute name="headerTitle" type="Aura.Component[]">
+        <h2><b>Custom Attachments ({!v.Sum})</b></h2>
+    </aura:attribute>
+    <aura:attribute name="docURL" type="string"  default=""/> 
+    <aura:attribute name="cURLinstance" type="string"  default=""/>
+    
+    
+    <aura:attribute name="accept" type="List" default="['.png', '.PNG','.pdf','.PDF',''.csv','.xls']"/>
+    <lightning:card variant="Narrow" iconName="standard:file"  title="{!v.headerTitle}" class="upload-card">
+        <aura:if isTrue="{!v.spinner}">
+            <div aura:id="spinnerId" class="slds-spinner_container">
+                <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!and(or(and(v.allowActionsOnlyToInitiator, v.isInitiatorUser),not(v.allowActionsOnlyToInitiator)),or(and(v.restrictUploadWhenCaseIsClosed, not(v.isCaseClosed)),not(v.restrictUploadWhenCaseIsClosed)))}">            
+                <!--lightning:input aura:id="file-input" type="file" 
+                                 files="{!v.fileToBeUploaded}"
+                                 onchange="{!c.onFileUploaded}"
+                                 accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf,image/png,image/jpeg,image/jpg,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/csv,text/plain"
+                                 label="Attachment" 
+                                 name="file" multiple="true"/ --> 
+            
+            <div slot="footer" class="slds-grid">
+                <div class="slds-col">
+                    <lightning:fileUpload label="Upload File" multiple="true" accept=".txt, .pdf, .png" recordId="{!v.recordId}" aura:id="multifileUpload" onuploadfinished="{!c.handleAfterUpload}" />
+                </div>
+                <div class="slds-col slds-p-top_large">
+                    <lightning:button label="Download All" class="slds-m-left_x-small" iconName="utility:download" iconPosition="left" onclick="{!c.handleAfterDownload}" />                    
+                </div>
+            </div>
+            
+            
+        </aura:if>
+        
+        <!-- Start 09 10 22-->
+        <aura:if isTrue="{!v.recentAttachContentDocuments.length > 0}">
+        <div class="slds-scrollable_x" style="height:200px;overflow: auto;">
+                <ul class="slds-has-dividers_bottom-space">
+                    <aura:iteration items="{!v.recentAttachContentDocuments}" var="item">
+                        <li class="slds-item" style="border: 0;">
+                            <ul class="slds-list_horizontal">                              
+                                <li class="slds-item">
+                                    <lightning:buttonMenu aura:id="menu" iconSize="x-small" onselect="{!c.handleActionSelection}" alternativeText="Actions">
+                                        <lightning:menuItem value="{!'Download-' + item.docId}" label="Download" />
+                                        <aura:if isTrue="{!and(or(and(v.allowActionsOnlyToInitiator, v.isInitiatorUser), not(v.allowActionsOnlyToInitiator)),or(and(v.restrictEditWhenCaseIsClosed, not(v.isCaseClosed)),not(v.restrictEditWhenCaseIsClosed)))}">
+                                                <lightning:menuItem value="{!'Edit-' + item.docId}" label="Edit" />
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(or(and(v.allowActionsOnlyToInitiator, v.isInitiatorUser), not(v.allowActionsOnlyToInitiator)),or(and(v.restrictDeleteWhenCaseIsClosed, not(v.isCaseClosed)),not(v.restrictDeleteWhenCaseIsClosed)))}">
+                                                <lightning:menuItem value="{!'Delete-' + item.docId}" label="Delete" />                                            
+                                        </aura:if>                                        
+                                    </lightning:buttonMenu>
+                                </li>                               
+                                <li class="slds-item" style="padding-left:8px;">
+                                    <aura:if isTrue="{!item.docType == 'Lightning'}">
+                                      <lightning:tile label="{!item.docName}" href="{!'/sfc/servlet.shepherd/document/download/' + item.docId + '?operationContext=S1'}">                                        
+                                      <ul class="slds-list_vertical">
+                                            <li class="slds-item">
+                                                <aura:if isTrue="{!not(empty(item.docDescription))}">
+                                                    <label for="fullname" style="display:block">{!item.docDescription}</label> 
+                                                </aura:if>
+                                            </li>    
+                                            <li class="slds-item">
+                                                <lightning:formattedDateTime value="{!item.docCreatedDateTime}" /> - {!item.docCreatedBy}  
+                                            </li>
+                                        </ul>
+                                    </lightning:tile>
+                                     <aura:set attribute="else">
+                                        <lightning:tile label="{!item.docName}" href="{!'/servlet/servlet.FileDownload?file=' + item.docId + '&amp;operationContext=S1'}">                                        
+                                        <ul class="slds-list_vertical">
+                                            <li class="slds-item">
+                                                <aura:if isTrue="{!not(empty(item.docDescription))}">
+                                                    <label for="fullname" style="display:block">{!item.docDescription}</label> 
+                                                </aura:if>
+                                            </li>    
+                                            <li class="slds-item">
+                                                <lightning:formattedDateTime value="{!item.docCreatedDateTime}" /> - {!item.docCreatedBy}  
+                                            </li>
+                                        </ul>
+                                    </lightning:tile>
+                                     </aura:set>
+                                    </aura:if>                                    
+                                </li>
+                            </ul>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div> 
+        </aura:if>
+        <!-- End 09 10 22-->
+        
+    </lightning:card>
+    <div>
+        <section aura:id="AttachModal" role="dialog" tabindex="-1" aria-labelledby="AttachModalHeading" aria-modal="true" aria-describedby="PgmModalBody" class="slds-modal">
+            <div class="slds-modal__container">
+                <!-- Modal Header ( consists of close button and heading of modal ) -->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon class="slds-modal__close" alternativeText="Close" iconName="utility:close" onclick="{!c.closeModal}" variant="bare-inverse" size="large"></lightning:buttonIcon>
+                    <h2 id="PgmModalHeading" class="slds-text-heading_medium slds-hyphenate">Edit Description</h2>                   
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="userModalBody">                    
+                    <label class="slds-form-element__label"> Description
+                        <!--<c:ToolTip text="Provide description"/> -->
+                    </label>
+                    <lightning:textarea value="{!v.AttachWrapper.docDescription}"/>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button onclick="{!c.closeModal}" variant="neutral">Cancel</lightning:button>
+                    <lightning:button onclick="{!c.rowSave}" variant="brand" >Save</lightning:button>                                               
+                </footer>
+            </div>
+        </section>
+        <div aura:id="AttachModalBackdrop" class="slds-backdrop"></div>
+    </div>
+    
+</aura:component>

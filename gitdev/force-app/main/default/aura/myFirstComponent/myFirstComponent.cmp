@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable">
+    <lightning:buttonMenu aura:id="menu" class="myUniqueClass" onselect="{! c.handleSelect }">
+        <lightning:menuItem value="MenuItemOne" label="Menu Item One" />
+        <lightning:menuItem value="MenuItemTwo" label="Menu Item Two" />
+        <lightning:menuItem value="MenuItemThree" label="Menu Item Three" disabled="true" />
+        <lightning:menuItem value="MenuItemFour" label="Menu Item Four" />
+   
+    </lightning:buttonMenu>
+<lightning:buttonMenu iconName="utility:chevrondown" class="myUniqueClass" label="hello" >
+                <lightning:menuItem label="Do the Important Thing" value="4" />
+            </lightning:buttonMenu>
+    
+
+</aura:component>

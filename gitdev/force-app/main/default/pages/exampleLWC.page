@@ -1,0 +1,16 @@
+<apex:page standardController="Knowledge__kav" standardStylesheets="true" showHeader="false">
+<apex:includeLightning />
+<div id="lightning" />
+
+  <script>
+    $Lightning.use("c:KnownApp", function () {
+        $Lightning.createComponent("exampleLWC",
+            { label: "Press Me!" },
+            "lightning",
+            function (cmp) {
+                console.log("button was created");
+            }
+        );
+    });
+  </script>
+</apex:page>

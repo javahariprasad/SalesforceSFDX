@@ -1,0 +1,11 @@
+<aura:component>
+     <aura:attribute name="acceptMessage" type="String" default="456" />
+    <lightning:layoutItem class="slds-p-left_small" size="12">
+        <aura:if isTrue="{!v.acceptMessage!=''}">          
+                <div>
+                    <aura:unescapedHtml value="{!v.acceptMessage}" />
+                </div>            
+        </aura:if>
+            
+    </lightning:layoutItem>
+</aura:component>

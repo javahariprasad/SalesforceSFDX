@@ -1,0 +1,55 @@
+<aura:component controller="Case_Controller" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >  
+     <aura:attribute name="showLoadingSpinner" type="boolean" default="false" />
+    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+     <aura:handler event="aura:waiting" action="{!c.waiting}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
+        <aura:attribute name="resp" type="String" default="" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="container">
+        <aura:if isTrue="{!v.Spinner}">
+    <div aura:id="spinnerId" class="slds-spinner_container">
+       <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+         <span class="slds-assistive-text">Loading</span>
+         <div class="slds-spinner__dot-a"></div>
+         <div class="slds-spinner__dot-b"></div>
+       </div>
+    </div>
+ </aura:if>
+        
+		<form class="slds-form--stacked">
+			<div class="slds-form-element slds-is-required">
+				<div class="slds-form-element__control">
+					<ui:inputText aura:id="inputName" label="Name"
+                        class="slds-input"
+                        labelClass="slds-form-element__label"
+                        value="{!v.myName}"
+                        required="true"/>
+                </div>
+            </div>
+    		<div class="slds-form-element">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="inputEmail" label="Email"
+                            class="slds-input"
+                            labelClass="slds-form-element__label"
+                            value="{!v.myEmail}"
+                            required="false"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <lightning:input aura:id="fileId" type="file" name="file" onchange="{!c.handleFilesChange}" class="file" label="Upload Attachment" multiple="false"/>
+                <!--iframe aura:id="vfFrame" class="content_viewport" src="/apex/MockCaptchaVSP" scrolling="yes" frameborder="0" width="100%" height="100%" allowtransparency="true"/-->
+           <div class="slds-text-body_small slds-text-color_error">{!v.fileName} </div>
+            </div>
+            
+            <div class="slds-form-element">
+				<ui:button label="Submit"
+                       class="slds-button slds-button--neutral"
+                       labelClass="label"
+                       press="{!c.save}"/>
+            </div>
+        </form>
+    </div>
+</aura:component>

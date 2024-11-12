@@ -1,0 +1,11 @@
+<aura:component >
+    <aura:handler name="cmpEvent" event="c:EmpEvent" action="{!c.handleComponentEvent}" />
+    <div class="slds-align_absolute-center">  
+       <lightning:layout multipleRows="True">
+            <lightning:layoutItem class="slds-p-around_large" size="12">
+                <c:EmployeeInput aura:id="ei"/>
+               <c:LightningDatatableEmployee aura:id="lde"/>
+           </lightning:layoutItem>
+       </lightning:layout>
+    </div>	
+</aura:component>

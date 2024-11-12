@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable">
+    
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="empList" type="List" default="[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:method name="parentData" action="{!c.getDataFromparent}">
+        <aura:attribute name="param1" type="String" /> 
+        <aura:attribute name="param2" type="String" />
+        <aura:attribute name="param3" type="String" />  
+	</aura:method>
+    
+  <div class="slds-align_absolute-center">
+  
+       <lightning:layout multipleRows="True" class="slds-p-around_large">
+            <lightning:layoutItem class="slds-p-around_large slds-box" size="12">            
+            <lightning:datatable class="myCss slds-border_top slds-scrollable_x" data="{!v.empList }"
+                                 columns="{! v.mycolumns }"
+                                 keyField="eId"
+                                hideCheckboxColumn="true"
+                                onrowaction ="{!c.handlerow}"/>
+               
+           </lightning:layoutItem>
+       </lightning:layout>
+    </div>
+</aura:component>

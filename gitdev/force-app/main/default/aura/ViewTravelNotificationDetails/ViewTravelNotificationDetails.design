@@ -1,0 +1,5 @@
+<design:component>
+     <design:attribute name="objNotifications" label="objNotifications"/>
+	 <design:attribute name="notifications2" label="notifications2"/>
+     <design:attribute name="index" label="index"/>
+</design:component>

@@ -1,0 +1,7 @@
+.THIS .divbackgroundColor {background-color:t(backgroundColor);}
+.THIS .fontWeightBold {font-weight:t(fontWeightBold);}
+.THIS .greyborder {border:t(greyborder);}
+.THIS .clsspandate {
+   font-size: 10pt; 
+}
+.THIS .pf-fontSize-medium{font-size: t(pffontSize8);}

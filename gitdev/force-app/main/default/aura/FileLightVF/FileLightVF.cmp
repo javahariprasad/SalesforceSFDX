@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes"  access="global">
+
+
+     <aura:attribute name="message" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+     <div><h3 class="slds-section__title slds-m-top--medium slds-m-bottom--medium">Employee         Information </h3></div>
+               <div class="slds-form-element gu-form-group">
+            <div class="slds-form-element__control">
+                <lightning:input class="slds-form-element__label" type="text" label="First Name" name="firstName" />
+            </div>
+            <div class="slds-form-element__control">
+                <lightning:input class="slds-form-element__label" type="text" label="LastName" name="lastName" />
+            </div>
+                   <div class="slds-form-element__control">
+                   <lightning:input type="text" label="Message:" value="{!v.message}"/>
+                   </div>
+<div class="slds-form-element__control">
+    				<lightning:button label="Send to VF" onclick="{!c.sendToVF}"/>
+</div>
+            <div>
+                <input name="imageFile" aura:id="file-input" type="file" />
+                                                          <ui:button label="Upload" press="{!c.uploadImage}"/>
+            </div>
+                   <iframe aura:id="vfFrame" src="/apex/FileUPloadPage" style="display:none"/>
+    </div>
+</aura:component>

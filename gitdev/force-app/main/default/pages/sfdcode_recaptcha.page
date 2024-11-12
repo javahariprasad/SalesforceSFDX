@@ -1,0 +1,67 @@
+<apex:page controller="ReCaptcha_Controller" sidebar="false" showheader="false"  action="{!getDomainURL}">
+    <html>
+      <head>
+        <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+        <script type="text/javascript">
+       
+           "{!siteKey}"
+           console.log(' site key '+"{!siteKey}");
+        
+          var lexOrigin = 'https://{!$CurrentPage.parameters.lcHost}';
+          
+           window.addEventListener("message", function(event) {
+        if (event.origin !== lexOrigin) {
+            // Not the expected origin: reject message!
+            return;
+        }
+        console.log(event.data);
+
+    }, false);
+
+        //Data for Google map
+        var data;
+
+        //Send message to LC
+        function sendToLC(message,files) {
+            /*if(files.value != 'undefined'){
+                 document.getElementById('selFile').innerHTML = files.value.substring(12, files.value.length);;
+             }*/ 
+            
+            if(typeof(lexOrigin) != 'undefined'){
+                parent.postMessage(message, lexOrigin);
+            }
+        }
+          
+          var verifyCallback = function(response) {
+              parent.postMessage("Unlock", "https://haritcs-dev-ed.lightning.force.com");
+          };
+          var onloadCallback = function() {
+               var v = "{!ltPageURL}";
+              //var iframeElements = parent.document.getElementsByTagName("iframe");
+              //alert(iframeElements);
+               
+              document.body.setAttribute('style', 'overflow: hidden;');
+              grecaptcha.render('html_element', {
+                  'sitekey' : '6LeAQJ8UAAAAALRb4veFmfIwmonYsMBYwQPwlvs-',
+                  'callback' : verifyCallback,
+              });
+              sendToLC
+          };
+          
+          var submitClick = function(response) {
+              alert("hello");
+          };
+          sendToLC({'state':'LOADED', 'vfHost': "{!LEFT($CurrentPage.URL,FIND('/',$CurrentPage.URL,9))}"});
+        </script>
+      </head>
+      <body>
+        <form action="?" method="POST">
+          <div id="html_element"></div>
+            <br/>
+            <input type="submit" value="Submidt" onClick="submitClick()"/>
+        </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async="" defer="">
+        </script>
+      </body>
+    </html>
+</apex:page>
