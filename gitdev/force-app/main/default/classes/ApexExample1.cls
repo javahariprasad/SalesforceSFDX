@@ -5,7 +5,7 @@ public class ApexExample1 {
     public ApexExample1(String prop1){
         this.prop1= prop1;
         System.debug(' this.prop1   222 '+this.prop1);
-    }
+    } // hello
     
     public ApexExample1(){}
     
